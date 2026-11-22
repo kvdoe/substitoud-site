@@ -11,19 +11,36 @@
     "thumb": "store/img/box-thumb.webp",
     "maxPerOrder": 48,
     "tiers": [
-      { "minQty": 1, "unitPrice": 499 },
-      { "minQty": 3, "unitPrice": 449 },
-      { "minQty": 6, "unitPrice": 399 },
-      { "minQty": 12, "unitPrice": 349 }
+      {
+        "minQty": 1,
+        "unitPrice": 499
+      },
+      {
+        "minQty": 3,
+        "unitPrice": 489
+      },
+      {
+        "minQty": 6,
+        "unitPrice": 479
+      },
+      {
+        "minQty": 12,
+        "unitPrice": 469
+      }
     ]
   },
   "shipping": {
-    "countries": ["US"],
+    "countries": [
+      "US"
+    ],
     "amount": 0,
     "label": "Free US shipping",
     "minBusinessDays": 3,
     "maxBusinessDays": 7
   },
-  "productionHosts": ["substitoud.com", "www.substitoud.com"],
+  "productionHosts": [
+    "substitoud.com",
+    "www.substitoud.com"
+  ],
   "contactEmail": "contact@substitoud.com"
 }

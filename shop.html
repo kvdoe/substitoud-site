@@ -39,7 +39,7 @@
   "offers": {
     "@type": "AggregateOffer",
     "priceCurrency": "USD",
-    "lowPrice": "3.49",
+    "lowPrice": "4.69",
     "highPrice": "4.99",
     "offerCount": 4,
     "availability": "https://schema.org/InStock",
@@ -88,14 +88,23 @@
 
           <div class="gallery">
             <div class="gallery-thumbs">
-            <button type="button" class="gallery-thumb" data-gallery-thumb data-full="store/img/box-on-shelf.webp" data-alt="An open box of SubstitOud incense standing on a wooden shelf beside a stick burning in a ceramic dish" aria-current="true" aria-label="Show photo 1 of 5"><img src="store/img/box-on-shelf.webp" alt="" loading="lazy" decoding="async" /></button>
-            <button type="button" class="gallery-thumb" data-gallery-thumb data-full="store/img/box-on-table.webp" data-alt="A box of SubstitOud incense on a wooden table with a single stick resting in a stone holder" aria-current="false" aria-label="Show photo 2 of 5"><img src="store/img/box-on-table.webp" alt="" loading="lazy" decoding="async" /></button>
-            <button type="button" class="gallery-thumb" data-gallery-thumb data-full="packaging-sleeve.webp" data-alt="The printed SubstitOud sleeve laid flat, showing the crane and turtle artwork, ingredients and safety notes" aria-current="false" aria-label="Show photo 3 of 5"><img src="packaging-sleeve.webp" alt="" loading="lazy" decoding="async" /></button>
-            <button type="button" class="gallery-thumb" data-gallery-thumb data-full="incense-bundle.webp" data-alt="A bundle of coreless SubstitOud incense sticks" data-contain aria-current="false" aria-label="Show photo 4 of 5"><img src="incense-bundle.webp" alt="" loading="lazy" decoding="async" /></button>
-            <button type="button" class="gallery-thumb" data-gallery-thumb data-full="packaging-batch.webp" data-alt="Rows of boxed SubstitOud incense stacked and ready to ship" aria-current="false" aria-label="Show photo 5 of 5"><img src="packaging-batch.webp" alt="" loading="lazy" decoding="async" /></button>
+            <button type="button" class="gallery-thumb" data-gallery-thumb data-full="store/img/box-on-shelf.webp" data-alt="An open box of SubstitOud incense standing on a wooden shelf beside a stick burning in a ceramic dish" aria-current="true" aria-label="Show photo 1"><img src="store/img/box-on-shelf.webp" alt="" loading="lazy" decoding="async" /></button>
+            <button type="button" class="gallery-thumb" data-gallery-thumb data-full="store/img/box-on-table.webp" data-alt="A box of SubstitOud incense on a wooden table with a single stick resting in a stone holder" aria-current="false" aria-label="Show photo 2"><img src="store/img/box-on-table.webp" alt="" loading="lazy" decoding="async" /></button>
+            <button type="button" class="gallery-thumb" data-gallery-thumb data-full="packaging-sleeve.webp" data-alt="The printed SubstitOud sleeve laid flat, showing the crane and turtle artwork, ingredients and safety notes" aria-current="false" aria-label="Show photo 3"><img src="packaging-sleeve.webp" alt="" loading="lazy" decoding="async" /></button>
+            <button type="button" class="gallery-thumb" data-gallery-thumb data-video aria-current="false" aria-label="Show the smoke test video"><img src="store/img/smoke-test-thumb.webp" alt="" loading="lazy" decoding="async" /><span class="play" aria-hidden="true"></span></button>
             </div>
-            <div class="gallery-main">
-              <img data-gallery-main src="store/img/box-on-shelf.webp" alt="An open box of SubstitOud incense standing on a wooden shelf beside a stick burning in a ceramic dish" width="1122" height="1402" fetchpriority="high" decoding="async" />
+            <div class="gallery-stage">
+              <div class="gallery-main" id="smoke-test" data-gallery-frame>
+                <img data-gallery-main src="store/img/box-on-shelf.webp" alt="An open box of SubstitOud incense standing on a wooden shelf beside a stick burning in a ceramic dish" width="1122" height="1402" fetchpriority="high" decoding="async" />
+                <div class="compare" data-compare hidden>
+                  <video class="compare-side" muted loop playsinline preload="none" poster="store/img/smoke-substitoud-poster.webp" data-src="substitoud-burning.mp4" aria-label="SubstitOud incense burning"></video>
+                  <video class="compare-side is-before" muted loop playsinline preload="none" poster="store/img/smoke-regular-poster.webp" data-src="normal-burning.mp4" aria-label="Regular incense burning"></video>
+                  <span class="compare-tag compare-tag--l">Regular incense</span>
+                  <span class="compare-tag compare-tag--r">SubstitOud</span>
+                  <div class="compare-handle" data-compare-handle role="slider" tabindex="0" aria-label="Drag to compare regular incense and SubstitOud" aria-valuemin="0" aria-valuemax="100" aria-valuenow="50"><span class="arrows" aria-hidden="true"><span></span><span></span></span></div>
+                </div>
+              </div>
+              <p class="gallery-caption" data-compare-caption hidden>Smoke test. Drag to compare regular incense, on the left, with SubstitOud, on the right.</p>
             </div>
           </div>
 
@@ -120,21 +129,21 @@
             </button>
             <button type="button" class="tier" data-min="3" aria-pressed="false">
               <span class="tier-qty">3 or more</span>
-              <span class="tier-price">$4.49</span>
+              <span class="tier-price">$4.89</span>
               <span class="tier-each">per box</span>
-              <span class="tier-save">Save 10%</span>
+              <span class="tier-save">Save 10¢ a box</span>
             </button>
             <button type="button" class="tier" data-min="6" aria-pressed="false">
               <span class="tier-qty">6 or more</span>
-              <span class="tier-price">$3.99</span>
+              <span class="tier-price">$4.79</span>
               <span class="tier-each">per box</span>
-              <span class="tier-save">Save 20%</span>
+              <span class="tier-save">Save 20¢ a box</span>
             </button>
             <button type="button" class="tier" data-min="12" aria-pressed="false">
               <span class="tier-qty">12 or more</span>
-              <span class="tier-price">$3.49</span>
+              <span class="tier-price">$4.69</span>
               <span class="tier-each">per box</span>
-              <span class="tier-save">Save 30%</span>
+              <span class="tier-save">Save 30¢ a box</span>
             </button>
             </div>
 
@@ -161,7 +170,7 @@
               <details>
                 <summary>Ingredients</summary>
                 <div class="acc-body">
-                  <p>Coconut-fiber charcoal powder, agarwood powder, vetiver powder, joss powder, pomelo peel and water. That is the full list printed on the sleeve.</p>
+                  <p>Coconut-fiber charcoal powder, agarwood powder, vetiver powder, joss powder, pomelo peel and water.</p>
                 </div>
               </details>
               <details>
@@ -192,7 +201,7 @@
       <div class="wrap">
         <div class="breaks-head">
           <h2 class="h2" id="breaks-head">The more boxes, the less each one costs.</h2>
-          <p class="lede">The price drops for every box in your order once you reach 3, 6 or 12. Your cart applies it automatically, and you can mix any number in between.</p>
+          <p class="lede">The price drops for every box in your order once you reach 3, 6 or 12. Your cart applies it automatically.</p>
         </div>
         <table class="breaks-table">
           <thead>
@@ -210,25 +219,25 @@
             <tr>
               <th scope="row">3 boxes</th>
               <td class="num" data-label="Sticks:">180</td>
-              <td class="num" data-label="Per box:">$4.49</td>
-              <td class="num" data-label="Order total:">$13.47</td>
-              <td class="save" data-label="You save:">$1.50 (10%)</td>
+              <td class="num" data-label="Per box:">$4.89</td>
+              <td class="num" data-label="Order total:">$14.67</td>
+              <td class="save" data-label="You save:">$0.30</td>
               <td><button type="button" class="so-btn so-btn--ghost so-btn--small" data-add-qty="3">Add 3 boxes</button></td>
             </tr>
             <tr>
               <th scope="row">6 boxes</th>
               <td class="num" data-label="Sticks:">360</td>
-              <td class="num" data-label="Per box:">$3.99</td>
-              <td class="num" data-label="Order total:">$23.94</td>
-              <td class="save" data-label="You save:">$6.00 (20%)</td>
+              <td class="num" data-label="Per box:">$4.79</td>
+              <td class="num" data-label="Order total:">$28.74</td>
+              <td class="save" data-label="You save:">$1.20</td>
               <td><button type="button" class="so-btn so-btn--ghost so-btn--small" data-add-qty="6">Add 6 boxes</button></td>
             </tr>
             <tr>
               <th scope="row">12 boxes</th>
               <td class="num" data-label="Sticks:">720</td>
-              <td class="num" data-label="Per box:">$3.49</td>
-              <td class="num" data-label="Order total:">$41.88</td>
-              <td class="save" data-label="You save:">$18.00 (30%)</td>
+              <td class="num" data-label="Per box:">$4.69</td>
+              <td class="num" data-label="Order total:">$56.28</td>
+              <td class="save" data-label="You save:">$3.60</td>
               <td><button type="button" class="so-btn so-btn--ghost so-btn--small" data-add-qty="12">Add 12 boxes</button></td>
             </tr>
           </tbody>
@@ -253,7 +262,7 @@
             <p>The fragrance is sustainably cultivated agarwood combined with dried vetiver.</p>
           </div>
         </div>
-        <p class="facts-foot">Utility patent <a class="textlink" href="https://wipopublish.ipvietnam.gov.vn/wopublish-search/public/detail/patents?id=VN1202506174" target="_blank" rel="noopener">VN1202506174</a>. <a class="textlink" href="index.html#smokeless-head">Watch it burn next to regular incense</a></p>
+        <p class="facts-foot">Utility patent <a class="textlink" href="https://wipopublish.ipvietnam.gov.vn/wopublish-search/public/detail/patents?id=VN1202506174" target="_blank" rel="noopener">VN1202506174</a>. <a class="textlink" href="#smoke-test" data-show-smoke>Watch it burn next to regular incense</a></p>
       </div>
     </section>
 
@@ -265,8 +274,7 @@
           </div>
           <div class="sleeve-text">
             <h2 class="h2" id="sleeve-head">A crane on a turtle's back</h2>
-            <p class="lede">The sleeve carries the pair that stands beside the altar in Vietnamese temples and communal houses. The turtle is the earth, and the crane is what rises from it.</p>
-            <p class="lede">Incense does the same work, which is why the two keep watch over the place where it is lit.</p>
+            <p class="lede">The crane bird standing on the turtle symbolizes the harmony between Heaven and Earth. We hope our agarwood incense can be your own bridge between the two.</p>
           </div>
         </div>
       </div>
@@ -276,8 +284,8 @@
       <div class="wrap">
         <div class="band-grid">
           <div>
-            <h2 class="h2" id="band-head">Buying for a temple, pagoda or shop?</h2>
-            <p>SubstitOud burns in more than 50 temples and pagodas and sells in shops across six countries and regions. Tell us what you need and we will send wholesale pricing.</p>
+            <h2 class="h2" id="band-head">Buying in bulk?</h2>
+            <p>For more than 48 boxes, or regular supply for a store, studio or place of worship, tell us what you need and we will send wholesale pricing.</p>
           </div>
           <a class="so-btn so-btn--large" href="wholesale.html">Ask about wholesale</a>
         </div>
@@ -290,19 +298,19 @@
         <div class="accordion">
           <details>
             <summary>Is it completely smokeless?</summary>
-            <div class="acc-body"><p>Virtually. A stick still glows and gives off its scent, with far less visible smoke than a regular stick. The side-by-side video on our <a class="textlink" href="index.html#smokeless-head">home page</a> shows the difference.</p></div>
+            <div class="acc-body"><p>Virtually. A stick still glows and gives off its scent, with far less visible smoke than a regular stick. The <a class="textlink" href="#smoke-test" data-show-smoke>smoke test video</a> shows the difference.</p></div>
           </details>
           <details>
             <summary>How do the bundle prices work?</summary>
-            <div class="acc-body"><p>One or two boxes are $4.99 each. From 3 boxes every box is $4.49, from 6 every box is $3.99, and from 12 every box is $3.49. The discount shows in your cart before you pay.</p></div>
+            <div class="acc-body"><p>One or two boxes are $4.99 each. From 3 boxes every box is $4.89, from 6 every box is $4.79, and from 12 every box is $4.69.</p></div>
           </details>
           <details>
             <summary>Where do you ship?</summary>
-            <div class="acc-body"><p>The online store ships to US addresses, free of charge. Outside the US, SubstitOud is sold through shops and temples in Vietnam, Nepal, Hong Kong, Bhutan and China. Email <a class="textlink" href="mailto:contact@substitoud.com">contact@substitoud.com</a> and we will point you to the nearest one.</p></div>
+            <div class="acc-body"><p>The online store ships to US addresses, free of charge. For anywhere else, email <a class="textlink" href="mailto:contact@substitoud.com">contact@substitoud.com</a>.</p></div>
           </details>
           <details>
             <summary>Is a holder included?</summary>
-            <div class="acc-body"><p>No. The box contains incense sticks only. Any stick holder set on a fireproof surface will work.</p></div>
+            <div class="acc-body"><p>No. The box contains incense sticks only.</p></div>
           </details>
         </div>
         <p class="faq-more"><a class="textlink" href="faq.html">All questions and answers</a></p>

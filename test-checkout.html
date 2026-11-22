@@ -74,10 +74,17 @@
           <form class="form" data-test-checkout novalidate>
             <div class="form-section">
               <h2>Contact</h2>
+              <div class="form-row">
               <div class="field">
                 <label for="email">Email</label>
                 <input id="email" name="email" type="email" autocomplete="email" data-required="Enter your email address." aria-describedby="email-error" />
                 <p class="field-hint">Used for the receipt.</p><p class="field-error" id="email-error" role="alert"></p>
+              </div>
+              <div class="field">
+                <label for="phone">Phone number</label>
+                <input id="phone" name="phone" type="tel" autocomplete="tel" data-required="Enter your phone number." data-phone aria-describedby="phone-error" />
+                <p class="field-hint">Used only for questions about your order.</p><p class="field-error" id="phone-error" role="alert"></p>
+              </div>
               </div>
             </div>
             <div class="form-section">

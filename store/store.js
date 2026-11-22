@@ -273,12 +273,12 @@
     var tierWrap = $('[data-tiers]', root);
     tierWrap.innerHTML = '';
     tiers.forEach(function (t, i) {
-      var pct = Math.round((1 - t.unitPrice / tiers[0].unitPrice) * 100);
+      var off = tiers[0].unitPrice - t.unitPrice;
       var b = el('button', { type: 'button', class: 'tier', 'data-min': String(t.minQty), 'aria-pressed': 'false' }, [
         el('span', { class: 'tier-qty', text: i === 0 ? '1 box' : t.minQty + ' or more' }),
         el('span', { class: 'tier-price', text: money(t.unitPrice) }),
         el('span', { class: 'tier-each', text: 'per box' }),
-        el('span', { class: 'tier-save', text: i === 0 ? '' : 'Save ' + pct + '%' })
+        el('span', { class: 'tier-save', text: i === 0 ? '' : 'Save ' + off + '\u00a2 a box' })
       ]);
       b.addEventListener('click', function () { setShopQty(t.minQty); });
       tierWrap.appendChild(b);
@@ -301,18 +301,89 @@
       });
     });
 
-    /* gallery */
+    /* gallery: photos, plus the smoke test as a drag-to-compare video */
     var main = $('[data-gallery-main]');
-    $all('[data-gallery-thumb]').forEach(function (t) {
-      t.addEventListener('click', function () {
+    var frame = $('[data-gallery-frame]');
+    var compare = $('[data-compare]');
+    var caption = $('[data-compare-caption]');
+    var videos = compare ? $all('video', compare) : [];
+    function showVideo(on) {
+      if (!compare) return;
+      main.hidden = on;
+      compare.hidden = !on;
+      if (caption) caption.hidden = !on;
+      frame.classList.toggle('is-video', on);
+      videos.forEach(function (v) {
+        if (on) {
+          if (!v.getAttribute('src')) v.setAttribute('src', v.getAttribute('data-src'));   /* loaded only when asked for */
+          var pr = v.play();
+          if (pr && pr.catch) pr.catch(function () { /* autoplay refused: the poster stays */ });
+        } else {
+          v.pause();
+        }
+      });
+    }
+    function selectThumb(t) {
+      if (t.hasAttribute('data-video')) {
+        showVideo(true);
+      } else {
+        showVideo(false);
         main.src = t.getAttribute('data-full');
         main.alt = t.getAttribute('data-alt');
-        main.classList.toggle('is-contain', t.hasAttribute('data-contain'));
-        $all('[data-gallery-thumb]').forEach(function (o) { o.setAttribute('aria-current', o === t ? 'true' : 'false'); });
+      }
+      $all('[data-gallery-thumb]').forEach(function (o) { o.setAttribute('aria-current', o === t ? 'true' : 'false'); });
+    }
+    $all('[data-gallery-thumb]').forEach(function (t) {
+      t.addEventListener('click', function () { selectThumb(t); });
+    });
+    $all('[data-show-smoke]').forEach(function (a) {
+      a.addEventListener('click', function (e) {
+        e.preventDefault();
+        var vt = $('[data-gallery-thumb][data-video]');
+        if (vt) selectThumb(vt);
+        frame.scrollIntoView({ behavior: 'smooth', block: 'center' });
       });
     });
+    function openFromHash() {
+      if (window.location.hash !== '#smoke-test') return;
+      var first = $('[data-gallery-thumb][data-video]');
+      if (first) selectThumb(first);
+    }
+    openFromHash();
+    window.addEventListener('hashchange', openFromHash);
+    initCompare(compare);
 
     setShopQty(1);
+  }
+  function initCompare(root) {
+    if (!root) return;
+    var before = $('.compare-side.is-before', root);
+    var handle = $('[data-compare-handle]', root);
+    var dragging = false;
+    function set(pct) {
+      pct = Math.max(0, Math.min(100, pct));
+      before.style.clipPath = 'inset(0 ' + (100 - pct) + '% 0 0)';
+      handle.style.left = pct + '%';
+      handle.setAttribute('aria-valuenow', String(Math.round(pct)));
+    }
+    function fromEvent(e) {
+      var r = root.getBoundingClientRect();
+      set(((e.clientX - r.left) / r.width) * 100);
+    }
+    root.addEventListener('pointerdown', function (e) {
+      dragging = true;
+      if (root.setPointerCapture) { try { root.setPointerCapture(e.pointerId); } catch (err) { /* ignore */ } }
+      fromEvent(e);
+    });
+    root.addEventListener('pointermove', function (e) { if (dragging) fromEvent(e); });
+    ['pointerup', 'pointercancel', 'lostpointercapture'].forEach(function (n) {
+      root.addEventListener(n, function () { dragging = false; });
+    });
+    handle.addEventListener('keydown', function (e) {
+      var cur = parseFloat(handle.style.left || '50');
+      if (e.key === 'ArrowLeft') { set(cur - 4); e.preventDefault(); }
+      if (e.key === 'ArrowRight') { set(cur + 4); e.preventDefault(); }
+    });
   }
   function setShopQty(v) {
     shopQty = Math.max(1, Math.min(maxQty(), v));
@@ -371,6 +442,7 @@
       if (!v) msg = f.getAttribute('data-required') || 'This field is required.';
       else if (f.type === 'email' && !/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(v)) msg = 'Enter an email address like name@example.com.';
       else if (f.hasAttribute('data-zip') && !/^\d{5}(-\d{4})?$/.test(v)) msg = 'Enter a 5-digit ZIP code.';
+      else if (f.hasAttribute('data-phone') && v.replace(/\D/g, '').length < 10) msg = 'Enter a phone number with area code.';
       var errNode = $('#' + f.id + '-error', form);
       if (errNode) errNode.textContent = msg;
       f.setAttribute('aria-invalid', msg ? 'true' : 'false');
@@ -408,6 +480,7 @@
         reference: 'SO-TEST-' + Math.random().toString(36).slice(2, 8).toUpperCase(),
         paid: true,
         email: d.email,
+        phone: d.phone,
         name: d.name,
         address: { line1: d.line1, line2: d.line2, city: d.city, state: d.state, postal_code: d.zip, country: 'US' },
         items: [{ name: prod.name, qty: p.qty, unit: p.unit, total: p.subtotal }],
@@ -432,6 +505,8 @@
       .filter(function (x) { return x && String(x).trim(); }).map(esc).join('<br>');
     var addrNode = $('[data-o="address"]');
     if (addrNode) addrNode.innerHTML = addr || 'Shown on your email receipt.';
+    var contactNode = $('[data-o="contact"]');
+    if (contactNode) contactNode.textContent = [o.email, o.phone].filter(Boolean).join(', ');
     var rows = (o.items || []).map(function (it) {
       return '<div><dt>' + esc(plural(it.qty, 'box', 'boxes')) + (it.unit != null ? ' at ' + money(it.unit) : '') + '</dt><dd>' + money(it.total) + '</dd></div>';
     }).join('');
