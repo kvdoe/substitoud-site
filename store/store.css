@@ -465,9 +465,10 @@ body[data-page="shop"] .buy .accordion details:last-child { border-bottom: 0; }
   body[data-page="shop"] .product-grid { grid-template-columns: auto minmax(0, 1fr); align-items: stretch; }
   body[data-page="shop"] .gallery { position: static; grid-template-columns: 84px auto; align-items: start; }
   body[data-page="shop"] .gallery-thumbs { max-height: var(--stage-h); }
-  body[data-page="shop"] .gallery-stage { width: calc(var(--stage-h) * 0.8); }
-  body[data-page="shop"] .gallery-main { width: 100%; height: var(--stage-h); aspect-ratio: auto; }
-  body[data-page="shop"] .gallery-main.is-video { height: auto; aspect-ratio: 4 / 3; }
+  /* the photo is as tall as the stage, unless that would squeeze the buy card on a narrow window */
+  body[data-page="shop"] .gallery-stage { width: min(calc(var(--stage-h) * 0.8), calc(100vw - 754px)); }
+  body[data-page="shop"] .gallery-main { width: 100%; height: auto; aspect-ratio: 4 / 5; }
+  body[data-page="shop"] .gallery-main.is-video { aspect-ratio: 4 / 3; }
   body[data-page="shop"] .buy {
     min-height: var(--stage-h);
     display: flex;
