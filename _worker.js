@@ -133,12 +133,15 @@ async function handleApi(input) {
 
   if (path === '/api/config' && input.method === 'GET') {
     var cfg = { mode: mode, tax: env.STRIPE_AUTOMATIC_TAX === '1' };
-    /* Setup check, test keys only: confirms Stripe accepts the key and reports whether Stripe Tax is ready. */
-    if (input.query && input.query.diagnose === '1' && mode === 'test') {
+    /* Setup check: confirms Stripe accepts the key and reports whether Stripe Tax is ready.
+       Stripe's own error text is only shown with a test key. */
+    if (input.query && input.query.diagnose === '1' && mode !== 'off') {
       var acct = await stripeRequest(env, input.fetchImpl, 'GET', '/tax/settings');
       cfg.keyAccepted = acct.ok;
       cfg.stripeTaxStatus = acct.ok ? acct.data.status : null;
-      cfg.stripeMessage = acct.ok ? null : (acct.data && acct.data.error && acct.data.error.message) || ('HTTP ' + acct.status);
+      if (mode === 'test') {
+        cfg.stripeMessage = acct.ok ? null : (acct.data && acct.data.error && acct.data.error.message) || ('HTTP ' + acct.status);
+      }
     }
     return { status: 200, body: cfg };
   }
