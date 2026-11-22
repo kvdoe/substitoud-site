@@ -277,7 +277,7 @@
         el('span', { class: 'tier-qty', text: i === 0 ? '1 box' : t.minQty + ' or more' }),
         el('span', { class: 'tier-price', text: money(t.unitPrice) }),
         el('span', { class: 'tier-each', text: 'per box' }),
-        el('span', { class: 'tier-save', text: i === 0 ? '' : 'Save ' + off + '\u00a2 a box' })
+        el('span', { class: 'tier-save', text: i === 0 ? '' : 'Save ' + off + '\u00a2' })
       ]);
       b.addEventListener('click', function () { setShopQty(t.minQty); });
       tierWrap.appendChild(b);

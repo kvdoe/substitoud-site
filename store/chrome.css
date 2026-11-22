@@ -20,6 +20,8 @@
 }
 
 html { scroll-padding-top: calc(var(--so-nav-h) + 24px); }
+/* even line lengths, so no heading or paragraph ends on a single stranded word */
+h1, h2, h3, h4, p, li, dt, dd, figcaption, summary { text-wrap: balance; }
 body.so-has-nav { padding-top: var(--so-nav-h); }
 body.so-has-nav[data-page="home"] { padding-top: 0; }
 body.so-has-nav[data-page="home"] .hero-block { padding-top: var(--so-nav-h); }
@@ -113,6 +115,7 @@ body.so-lock { overflow: hidden; }
   font-weight: 600;
   line-height: 1;
   letter-spacing: 0.005em;
+  white-space: nowrap;
   text-decoration: none;
   cursor: pointer;
   -webkit-tap-highlight-color: transparent;
@@ -260,6 +263,7 @@ body.so-lock { overflow: hidden; }
 .so-footer-col ul { list-style: none; margin: 0; padding: 0; }
 .so-footer-col li + li { margin-top: 10px; }
 .so-footer-col a {
+  white-space: nowrap;
   font-size: 16px;
   font-weight: 500;
   line-height: 1.4;
@@ -293,7 +297,8 @@ body.so-lock { overflow: hidden; }
 @media (max-width: 820px) {
   .so-footer { padding: 48px 0 32px; }
   .so-footer-inner { grid-template-columns: 1fr 1fr; gap: 36px 24px; padding-left: 24px; padding-right: 24px; }
-  .so-footer-brand { grid-column: 1 / -1; }
+  .so-footer-inner { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); }
+  .so-footer-brand, .so-footer-col:last-child { grid-column: 1 / -1; }
   .so-footer-brand img { height: 44px; }
   .so-footer-base { margin-top: 40px; padding-left: 24px; padding-right: 24px; }
 }
