@@ -37,7 +37,9 @@ Checkout needs one environment variable, `STRIPE_SECRET_KEY`, set on the host (V
 
 Stripe's page collects the email, phone number and US shipping address, all required.
 
-Optional: set `STRIPE_AUTOMATIC_TAX` to `1` to have Stripe Tax calculate sales tax (Stripe Tax must be set up in the dashboard first).
+Sales tax: once Stripe Tax is activated in the dashboard (head office address and at least one registration), set `STRIPE_AUTOMATIC_TAX` to `1`. Checkout then adds the tax for the buyer's shipping address on top of the price.
+
+Setup check, test keys only: open `/api/config?diagnose=1` to see whether Stripe accepts the key and whether Stripe Tax is ready.
 
 ## Changing prices
 

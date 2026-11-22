@@ -79,7 +79,14 @@ function checkoutParams(catalog, cart, origin, env, email) {
     params['shipping_address_collection[allowed_countries][' + i + ']'] = c;
   });
   if (email) params['customer_email'] = email;
-  if (env && env.STRIPE_AUTOMATIC_TAX === '1') params['automatic_tax[enabled]'] = 'true';
+  if (env && env.STRIPE_AUTOMATIC_TAX === '1') {
+    /* Stripe Tax works the sales tax out from the shipping address. Prices are before tax. */
+    params['automatic_tax[enabled]'] = 'true';
+    params['line_items[0][price_data][tax_behavior]'] = 'exclusive';
+    params['line_items[0][price_data][product_data][tax_code]'] = 'txcd_99999999';      /* general tangible goods */
+    params['shipping_options[0][shipping_rate_data][tax_behavior]'] = 'exclusive';
+    params['shipping_options[0][shipping_rate_data][tax_code]'] = 'txcd_92010001';      /* shipping */
+  }
   return params;
 }
 
@@ -124,7 +131,15 @@ async function handleApi(input) {
   var path = input.path.replace(/\/+$/, '');
 
   if (path === '/api/config' && input.method === 'GET') {
-    return { status: 200, body: { mode: mode } };
+    var cfg = { mode: mode, tax: env.STRIPE_AUTOMATIC_TAX === '1' };
+    /* Setup check, test keys only: confirms Stripe accepts the key and reports whether Stripe Tax is ready. */
+    if (input.query && input.query.diagnose === '1' && mode === 'test') {
+      var acct = await stripeRequest(env, input.fetchImpl, 'GET', '/tax/settings');
+      cfg.keyAccepted = acct.ok;
+      cfg.stripeTaxStatus = acct.ok ? acct.data.status : null;
+      cfg.stripeMessage = acct.ok ? null : (acct.data && acct.data.error && acct.data.error.message) || ('HTTP ' + acct.status);
+    }
+    return { status: 200, body: cfg };
   }
 
   if (path === '/api/checkout') {

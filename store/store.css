@@ -121,7 +121,7 @@ button, input, select, textarea { font: inherit; color: inherit; }
 .gallery-thumb[aria-current="true"] { opacity: 1; border-color: var(--so-green); }
 .gallery-thumb:focus-visible { outline: 2px solid var(--so-green); outline-offset: 2px; }
 
-.buy-title { font-family: var(--so-serif); font-weight: 300; font-size: clamp(40px, 4.3vw, 62px); line-height: 1.04; letter-spacing: -0.012em; color: var(--so-green); }
+.buy-title { font-family: var(--so-serif); font-weight: 700; font-size: clamp(38px, 4.1vw, 58px); line-height: 1.04; letter-spacing: -0.012em; color: var(--so-green); white-space: nowrap; }
 .buy-sub { margin-top: 14px; font-family: var(--so-serif); font-size: 23px; line-height: 1.45; color: var(--so-text); max-width: 30em; }
 .buy-price { display: flex; align-items: baseline; gap: 12px; flex-wrap: wrap; margin-top: 26px; }
 .buy-price-now { font-family: var(--so-serif); font-size: 50px; font-weight: 400; line-height: 1; color: var(--so-green); }
@@ -417,3 +417,6 @@ button, input, select, textarea { font: inherit; color: inherit; }
 @media (max-width: 420px) {
   body[data-page="shop"] .buy-row .so-btn { font-size: 15px; padding: 0 12px; }
 }
+
+/* Shop page: secondary text in a rich brown in place of grey */
+body[data-page="shop"] { --so-muted: #6B4423; }
