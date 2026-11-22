@@ -6,7 +6,6 @@
   'use strict';
 
   var KEY = 'so_cart_v1';
-  var DEMO_ORDER_KEY = 'so_demo_order';
   var catalog = null;
   var memQty = 0;
   var page = document.body.getAttribute('data-page') || '';
@@ -110,7 +109,7 @@
       });
     }
     var cartBtn = $('.so-cart-btn', nav);
-    if (cartBtn && page !== 'cart' && page !== 'test-checkout') {
+    if (cartBtn && page !== 'cart') {
       cartBtn.addEventListener('click', function (e) {
         if (!catalog) return;            /* no catalog yet: follow the link to the cart page */
         e.preventDefault();
@@ -433,7 +432,7 @@
     }
   }
 
-  /* ---------- test checkout (preview only, no payment) ---------- */
+  /* ---------- form validation ---------- */
   function validate(form) {
     var ok = true, first = null;
     $all('[data-required]', form).forEach(function (f) {
@@ -451,47 +450,6 @@
     if (first) first.focus();
     return ok;
   }
-  function initTestCheckout() {
-    var form = $('[data-test-checkout]');
-    if (!form) return;
-    var qty = getQty();
-    if (!qty) { window.location.replace('cart.html'); return; }
-    var p = priceFor(qty);
-    var sum = $('[data-order-summary]');
-    sum.innerHTML = '';
-    var prod = catalog.product;
-    sum.appendChild(el('div', { class: 'so-line' }, [
-      el('div', { class: 'so-line-img' }, [el('img', { src: prod.thumb, alt: '', width: '280', height: '600' })]),
-      el('div', {}, [
-        el('p', { class: 'so-line-name', text: prod.shortName }),
-        el('p', { class: 'so-line-meta', text: plural(p.qty, 'box', 'boxes') + ', ' + (p.qty * prod.sticksPerBox) + ' sticks. ' + money(p.unit) + ' per box.' })
-      ])
-    ]));
-    sum.appendChild(el('div', { style: 'height:18px' }));
-    sum.appendChild(summaryNode(p));
-
-    form.addEventListener('submit', function (e) {
-      e.preventDefault();
-      if (!validate(form)) return;
-      var d = {};
-      $all('input, select', form).forEach(function (f) { if (f.name) d[f.name] = f.value.trim(); });
-      var order = {
-        demo: true,
-        reference: 'SO-TEST-' + Math.random().toString(36).slice(2, 8).toUpperCase(),
-        paid: true,
-        email: d.email,
-        phone: d.phone,
-        name: d.name,
-        address: { line1: d.line1, line2: d.line2, city: d.city, state: d.state, postal_code: d.zip, country: 'US' },
-        items: [{ name: prod.name, qty: p.qty, unit: p.unit, total: p.subtotal }],
-        subtotal: p.subtotal, discount: 0, shipping: 0, tax: 0, total: p.subtotal
-      };
-      try { window.sessionStorage.setItem(DEMO_ORDER_KEY, JSON.stringify(order)); } catch (err) { /* ignore */ }
-      setQty(0);
-      window.location.href = 'order-confirmed.html?demo=1';
-    });
-  }
-
   /* ---------- order confirmation ---------- */
   function showState(name) {
     $all('[data-state]').forEach(function (s) { s.hidden = s.getAttribute('data-state') !== name; });
@@ -513,22 +471,14 @@
     if (o.discount) rows += '<div class="so-sum-save"><dt>Discount</dt><dd>−' + money(o.discount) + '</dd></div>';
     rows += '<div><dt>Shipping in the US</dt><dd>' + (o.shipping ? money(o.shipping) : 'Free') + '</dd></div>';
     if (o.tax) rows += '<div><dt>Sales tax</dt><dd>' + money(o.tax) + '</dd></div>';
-    rows += '<div class="so-sum-total"><dt>' + (o.demo ? 'Total (not charged)' : 'Total paid') + '</dt><dd>' + money(o.total) + '</dd></div>';
+    rows += '<div class="so-sum-total"><dt>Total paid</dt><dd>' + money(o.total) + '</dd></div>';
     var sum = $('[data-o="summary"]');
     if (sum) sum.innerHTML = rows;
-    $all('[data-demo-only]').forEach(function (n) { n.hidden = !o.demo; });
-    $all('[data-real-only]').forEach(function (n) { n.hidden = !!o.demo; });
     showState(o.paid ? 'ok' : 'pending');
   }
   function initConfirm() {
     if (!$('[data-confirm]')) return;
     var q = window.location.search;
-    if (/[?&]demo=1/.test(q)) {
-      var raw = null;
-      try { raw = window.sessionStorage.getItem(DEMO_ORDER_KEY); } catch (e) { /* ignore */ }
-      if (raw) { renderOrder(JSON.parse(raw)); } else { showState('missing'); }
-      return;
-    }
     var m = q.match(/[?&]session_id=([^&]+)/);
     if (!m) { showState('missing'); return; }
     fetch('/api/order?session_id=' + encodeURIComponent(decodeURIComponent(m[1])))
@@ -572,22 +522,6 @@
     });
   }
 
-  /* ---------- mode banner ---------- */
-  function initModeBar() {
-    var bar = $('[data-testbar]');
-    if (!bar) return;
-    fetch('/api/config').then(function (r) { return r.ok ? r.json() : null; }).then(function (c) {
-      if (!c) return;
-      if (c.mode === 'demo') {
-        bar.innerHTML = '<strong>Store preview.</strong> Stripe is not connected yet, so checkout runs as a test and no payment is taken.';
-        bar.hidden = false;
-      } else if (c.mode === 'test') {
-        bar.innerHTML = '<strong>Stripe test mode.</strong> Pay with card 4242 4242 4242 4242, any future date and any CVC. No real charge is made.';
-        bar.hidden = false;
-      }
-    }).catch(function () { /* static host without the API: say nothing */ });
-  }
-
   /* ---------- boot ---------- */
   function renderAll() {
     renderBadge();
@@ -607,10 +541,8 @@
       catalog = c;
       initShop();
       initCartPage();
-      initTestCheckout();
       initConfirm();
       initWholesale();
-      initModeBar();
       renderAll();
     })
     .catch(function () {

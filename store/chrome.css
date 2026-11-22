@@ -479,18 +479,6 @@ body.so-lock { overflow: hidden; }
 }
 .so-error[hidden] { display: none; }
 
-.so-testbar {
-  background: var(--so-green);
-  color: var(--so-bg);
-  font-family: var(--so-sans);
-  font-size: 14px;
-  line-height: 1.5;
-  text-align: center;
-  padding: 9px 20px;
-}
-.so-testbar[hidden] { display: none; }
-.so-testbar strong { font-weight: 600; }
-
 @media (prefers-reduced-motion: reduce) {
   .so-nav, .so-btn, .so-drawer, .so-scrim, .so-link::before, .so-footer-col a { transition: none; }
 }

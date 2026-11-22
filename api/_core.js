@@ -16,12 +16,11 @@ function priceCart(catalog, qty) {
   return { qty: qty, unit: unit, base: base, subtotal: unit * qty, savings: (base - unit) * qty };
 }
 
-function storeMode(env, host, catalog) {
+function storeMode(env) {
   var key = (env && env.STRIPE_SECRET_KEY) || '';
   if (/^(sk|rk)_live_/.test(key)) return 'live';
   if (/^(sk|rk)_test_/.test(key)) return 'test';
-  var h = String(host || '').toLowerCase().replace(/:\d+$/, '');
-  return (catalog.productionHosts || []).indexOf(h) !== -1 ? 'off' : 'demo';
+  return 'off';
 }
 
 function formEncode(params) {
@@ -121,7 +120,7 @@ function orderSummary(session) {
    output: { status, body } */
 async function handleApi(input) {
   var catalog = input.catalog, env = input.env || {};
-  var mode = storeMode(env, input.host, catalog);
+  var mode = storeMode(env);
   var path = input.path.replace(/\/+$/, '');
 
   if (path === '/api/config' && input.method === 'GET') {
@@ -140,10 +139,7 @@ async function handleApi(input) {
     }
     var cart = priceCart(catalog, qty);
     if (mode === 'off') {
-      return { status: 503, body: { error: 'Online checkout is not switched on yet. Email ' + catalog.contactEmail + ' to place an order.' } };
-    }
-    if (mode === 'demo') {
-      return { status: 200, body: { mode: 'demo', url: '/test-checkout.html', cart: cart } };
+      return { status: 503, body: { error: 'Checkout is unavailable right now. Email ' + catalog.contactEmail + ' to place your order.' } };
     }
     var email = input.body && typeof input.body.email === 'string' && /^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(input.body.email)
       ? input.body.email : null;
@@ -158,7 +154,7 @@ async function handleApi(input) {
 
   if (path === '/api/order' && input.method === 'GET') {
     var id = String((input.query && input.query.session_id) || '');
-    if (mode === 'demo' || mode === 'off' || !/^cs_(test|live)_[A-Za-z0-9]{10,}$/.test(id)) {
+    if (mode === 'off' || !/^cs_(test|live)_[A-Za-z0-9]{10,}$/.test(id)) {
       return { status: 404, body: { error: 'Order not found.' } };
     }
     var o = await stripeRequest(env, input.fetchImpl, 'GET', '/checkout/sessions/' + id, { 'expand[]': 'line_items' });
@@ -169,7 +165,7 @@ async function handleApi(input) {
   return { status: 404, body: { error: 'Not found.' } };
 }
 
-/* ---------- Vercel adapter (preview deployments) ---------- */
+/* ---------- Vercel adapter ---------- */
 var catalog = require('../store/catalog.json');
 
 module.exports = async function (req, res) {

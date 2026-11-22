@@ -10,7 +10,6 @@ Static site plus a small checkout API. The same files run on Vercel (preview) an
 | `shop.html` | Product page: gallery, price tiers, add to cart |
 | `cart.html` | Cart and order summary, starts checkout |
 | `order-confirmed.html` | Confirmation page shown after payment |
-| `test-checkout.html` | Stand-in payment step, used only while Stripe is not connected |
 | `wholesale.html`, `faq.html`, `shipping-returns.html`, `privacy.html`, `terms.html`, `404.html` | Supporting pages |
 | `store/catalog.json` | Prices, tiers, order limit, shipping. **This is what customers are charged.** |
 | `store/store.js`, `store/chrome.css`, `store/store.css` | Cart logic and styles |
@@ -26,16 +25,17 @@ Static site plus a small checkout API. The same files run on Vercel (preview) an
 
 Orders, addresses and refunds are managed in the Stripe dashboard.
 
-## Store modes
+## Connecting Stripe
 
-The mode depends on the `STRIPE_SECRET_KEY` environment variable.
+Checkout needs one environment variable, `STRIPE_SECRET_KEY`, set on the host (Vercel and Cloudflare Pages each have their own).
 
-| Key | Mode | What happens at checkout |
-| --- | --- | --- |
-| none, on a preview address | `demo` | Goes to `test-checkout.html`. No payment. |
-| none, on substitoud.com | `off` | Shows "checkout is not switched on yet, email us". |
-| `sk_test_...` | `test` | Real Stripe page in test mode. Card 4242 4242 4242 4242. |
-| `sk_live_...` | `live` | Real payments. |
+| Key | What happens at checkout |
+| --- | --- |
+| not set | The cart shows "Checkout is unavailable right now" with the contact email. |
+| `sk_test_...` | Stripe's page opens in test mode. Card 4242 4242 4242 4242, no real charge. |
+| `sk_live_...` | Real payments. |
+
+Stripe's page collects the email, phone number and US shipping address, all required.
 
 Optional: set `STRIPE_AUTOMATIC_TAX` to `1` to have Stripe Tax calculate sales tax (Stripe Tax must be set up in the dashboard first).
 

@@ -38,9 +38,5 @@
     "minBusinessDays": 3,
     "maxBusinessDays": 7
   },
-  "productionHosts": [
-    "substitoud.com",
-    "www.substitoud.com"
-  ],
   "contactEmail": "contact@substitoud.com"
 }
