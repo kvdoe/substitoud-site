@@ -76,7 +76,7 @@
     "name": "SubstitOud Incense",
     "description": "Virtually smokeless, utility-patented oud incense, hand-pressed in Bình Dương and Sapa, Vietnam. Made with cultivated oud and coconut shell charcoal.",
     "brand": { "@type": "Brand", "name": "SubstitOud" },
-    "image": "https://substitoud.com/substitoud-photoshoot.webp",
+    "image": "https://substitoud.com/store/img/box-on-shelf.jpg",
     "manufacturer": { "@type": "Organization", "name": "SubstitOud" },
     "countryOfOrigin": "VN",
     "category": "Incense",
@@ -94,7 +94,7 @@
 
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link rel="preload" as="image" href="substitoud-photoshoot.webp" fetchpriority="high" />
+  <link rel="preload" as="image" href="store/img/boxes-fan.webp" fetchpriority="high" />
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Plus+Jakarta+Sans:wght@400;500;600&display=swap" rel="stylesheet" />
 
   <style>
@@ -1185,6 +1185,8 @@
       line-height: 1.45;
       color: var(--text);
     }
+    .hero-product { align-items: center; min-height: 0; margin-left: -24px; }
+    .hero-product img { height: auto; max-height: 80vh; margin-top: 0; object-position: center; }
     .hero-cta { display: flex; gap: 12px; flex-wrap: wrap; margin-top: 30px; }
     .hero-note { margin: 14px 0 0; font-family: var(--sans); font-size: 15px; color: var(--text-muted); }
     .home-shop { padding: 20px 0 150px; }
@@ -1213,6 +1215,8 @@
       .hero-sub { font-size: 23px; }
     }
     @media (max-width: 720px) {
+      .hero-product { height: auto; margin: 8px -12px 4px; }
+      .hero-product img { height: auto; }
       .hero-sub { font-size: 20px; margin-top: 20px; max-width: none; }
       .hero-cta { margin-top: 22px; }
       .hero-block { padding-bottom: 8px; }
@@ -1254,7 +1258,7 @@
 
     <section class="hero" aria-labelledby="hero-tagline">
       <div class="hero-product reveal" aria-hidden="true">
-        <img src="substitoud-photoshoot.webp" alt="SubstitOud incense sticks fanned out on warm cream" width="2380" height="2380" decoding="async" fetchpriority="high" />
+        <img src="store/img/boxes-fan.webp" alt="Seven SubstitOud incense boxes fanned out, the first one open to show the sticks" width="2000" height="1191" decoding="async" fetchpriority="high" />
       </div>
 
       <div class="hero-text">
