@@ -79,6 +79,11 @@ function checkoutParams(catalog, cart, origin, env, email) {
     params['shipping_address_collection[allowed_countries][' + i + ']'] = c;
   });
   if (email) params['customer_email'] = email;
+  /* Brand mark on Stripe's payment page. Colors and shapes come from the Stripe account's branding settings. */
+  if (/^https:/.test(origin)) {
+    params['branding_settings[icon][type]'] = 'url';
+    params['branding_settings[icon][url]'] = origin + '/store/img/brand-icon.png';
+  }
   if (env && env.STRIPE_AUTOMATIC_TAX === '1') {
     /* Stripe Tax works the sales tax out from the shipping address. Prices are before tax. */
     params['automatic_tax[enabled]'] = 'true';
