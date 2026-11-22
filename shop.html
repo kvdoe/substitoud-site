@@ -149,12 +149,6 @@
               <button type="button" class="so-btn so-btn--large" data-add>Add 1 box to cart</button>
             </div>
 
-            <ul class="buy-assure">
-              <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg><span>Free shipping to any US address</span></li>
-              <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg><span>Secure checkout through Stripe</span></li>
-              <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg><span>Unopened boxes can be returned within 30 days</span></li>
-            </ul>
-
             <div class="accordion">
               <details open>
                 <summary>What is in the box</summary>
@@ -190,6 +184,17 @@
           </div>
 
         </div>
+      </div>
+    </section>
+
+    <section class="assure" aria-label="Ordering details">
+      <div class="wrap">
+        <ul class="assure-grid">
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2.5 6.5h11v9h-11z"/><path d="M13.5 9.5h4l3 3v3h-7z"/><circle cx="6.5" cy="17.5" r="1.8"/><circle cx="17" cy="17.5" r="1.8"/></svg><div><strong>Free US shipping</strong><span>Arrives 3 to 7 business days after it ships</span></div></li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="5" y="10.5" width="14" height="9.5" rx="1.5"/><path d="M8 10.5V8a4 4 0 0 1 8 0v2.5"/></svg><div><strong>Secure checkout</strong><span>Payments are handled by Stripe</span></div></li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 9h11a5 5 0 0 1 0 10H9"/><path d="M7.5 5.5L4 9l3.5 3.5"/></svg><div><strong>30-day returns</strong><span>On unopened boxes</span></div></li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="9.5" r="5.5"/><path d="M8.6 14L7 21l5-2.6L17 21l-1.6-7"/></svg><div><strong>Utility patented</strong><span>Patent VN1202506174</span></div></li>
+        </ul>
       </div>
     </section>
 
@@ -241,8 +246,11 @@
     </section>
 
     <section class="faq-short" aria-labelledby="faqs-head">
-      <div class="wrap wrap--narrow">
-        <h2 class="h2" id="faqs-head">Before you buy</h2>
+      <div class="wrap faq-grid">
+        <div class="faq-head">
+          <h2 class="h2" id="faqs-head">Before you buy</h2>
+          <p class="faq-more"><a class="textlink" href="faq.html">All questions and answers</a></p>
+        </div>
         <div class="accordion">
           <details>
             <summary>How much smoke does it make?</summary>
@@ -261,7 +269,6 @@
             <div class="acc-body"><p>No. The box contains incense sticks only.</p></div>
           </details>
         </div>
-        <p class="faq-more"><a class="textlink" href="faq.html">All questions and answers</a></p>
       </div>
     </section>
   </main>
