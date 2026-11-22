@@ -1178,6 +1178,19 @@
     }
 
     /* --- store additions (home) --- */
+    .problem-band { background: #1F2D1A; color: #FBF8EF; padding: clamp(72px, 9vw, 128px) 0; position: relative; z-index: 2; }
+    .problem-inner { max-width: 1040px; margin: 0 auto; padding: 0 32px; text-align: center; }
+    .problem-line, .problem-answer {
+      font-family: var(--serif);
+      font-size: clamp(25px, 3.05vw, 42px);
+      line-height: 1.24;
+      letter-spacing: -0.005em;
+      margin: 0;
+    }
+    .problem-line { font-weight: 500; color: #FBF8EF; text-wrap: pretty; }
+    .problem-answer { font-weight: 600; color: #E4B552; margin-top: 0.85em; text-wrap: balance; }
+    .problem-sources { font-family: var(--sans); font-size: 12.5px; line-height: 1.6; color: rgba(251, 248, 239, 0.58); margin: clamp(32px, 4vw, 52px) 0 0; }
+    @media (max-width: 720px) { .problem-inner { padding: 0 24px; } }
     .hero-sub {
       margin: 28px 0 0;
       max-width: 17.5em;
@@ -1377,7 +1390,14 @@
     </div>
   </section>
 
-  <hr class="section-rule" aria-hidden="true">
+  <!-- THE PROBLEM -->
+  <section class="problem-band" aria-labelledby="problem-head">
+    <div class="problem-inner">
+      <h2 id="problem-head" class="problem-line reveal">Gram for gram, traditional incense releases over four times the smoke particles of a cigarette, is linked to a 70% higher risk of some airway cancers after 40 years of use, and often relies on synthetic fragrance or endangered wild oud.</h2>
+      <p class="problem-answer reveal reveal-d1">SubstitOud burns with 93% less smoke and is 100% natural, made with cultivated oud.</p>
+      <p class="problem-sources reveal reveal-d2">Sources: Mannix et al., <em>Science of the Total Environment</em>, 1996. Friborg et al., <em>Cancer</em>, 2008. IUCN Red List, 2018.</p>
+    </div>
+  </section>
 
   <!-- SMOKELESS -->
   <section class="full-vh" aria-labelledby="smokeless-head">
