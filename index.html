@@ -1188,9 +1188,15 @@
       margin: 0;
     }
     .problem-line { font-weight: 400; color: #FBF8EF; text-wrap: balance; }
-    .problem-answer { font-weight: 400; color: #FBF8EF; margin-top: 0.85em; text-wrap: balance; }
-    .problem-line strong { font-weight: 600; color: #F2856D; }
-    .problem-answer strong { font-weight: 600; color: #E4B552; }
+    .problem-answer { font-weight: 400; color: #E4B552; margin-top: 0.85em; text-wrap: balance; }
+    .problem-line strong, .problem-answer strong { font-weight: 600; color: inherit; }
+    .problem-br { display: none; }
+    @media (min-width: 900px) {
+      /* wide screens: the problem sits on two lines and the answer on two lines */
+      .problem-inner { max-width: 1500px; padding: 0 48px; }
+      .problem-line, .problem-answer { font-size: min(calc((100vw - 96px) / 36.6), 38px); }
+      .problem-br { display: inline; }
+    }
     /* "93% reduced smoke" is longer than its sibling heading, so it runs a little smaller to stay on one line */
     .stat-num--line.stat-num--long { font-size: clamp(40px, 5.6vw, 76px); }
     @media (max-width: 720px) { .stat-num--line.stat-num--long { font-size: clamp(36px, 11.9vw, 60px); } }
@@ -1399,7 +1405,7 @@
   <section class="problem-band" aria-labelledby="problem-head">
     <div class="problem-inner">
       <h2 id="problem-head" class="problem-line reveal">Traditional incense releases <strong>4 times more harmful smoke particles</strong> than cigarettes, exposing families to <strong>cancer-linked emissions</strong> from synthetic additives and endangered&nbsp;ingredients.</h2>
-      <p class="problem-answer reveal reveal-d1">SubstitOud is <strong>nearly smokeless</strong>, made with <strong>cultivated oud</strong> and <strong>100%&nbsp;natural&nbsp;materials</strong>.</p>
+      <p class="problem-answer reveal reveal-d1">SubstitOud is <strong>nearly smokeless</strong>,<br class="problem-br" /> made with <strong>cultivated oud</strong> and <strong>100%&nbsp;natural&nbsp;materials</strong>.</p>
       <p class="problem-sources reveal reveal-d2">Sources: Mannix et al., <em>Science of the Total Environment</em>, 1996. Friborg et al., <em>Cancer</em>, 2008. IUCN Red List, 2018.</p>
     </div>
   </section>
