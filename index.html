@@ -1187,8 +1187,13 @@
       letter-spacing: -0.005em;
       margin: 0;
     }
-    .problem-line { font-weight: 500; color: #FBF8EF; text-wrap: balance; }
-    .problem-answer { font-weight: 600; color: #E4B552; margin-top: 0.85em; text-wrap: balance; }
+    .problem-line { font-weight: 400; color: #FBF8EF; text-wrap: balance; }
+    .problem-answer { font-weight: 400; color: #FBF8EF; margin-top: 0.85em; text-wrap: balance; }
+    .problem-line strong { font-weight: 600; color: #F2856D; }
+    .problem-answer strong { font-weight: 600; color: #E4B552; }
+    /* "93% reduced smoke" is longer than its sibling heading, so it runs a little smaller to stay on one line */
+    .stat-num--line.stat-num--long { font-size: clamp(40px, 5.6vw, 76px); }
+    @media (max-width: 720px) { .stat-num--line.stat-num--long { font-size: clamp(36px, 11.9vw, 60px); } }
     .problem-sources { font-family: var(--sans); font-size: 12.5px; line-height: 1.6; color: rgba(251, 248, 239, 0.58); margin: clamp(32px, 4vw, 52px) 0 0; }
     @media (max-width: 720px) { .problem-inner { padding: 0 24px; } }
     .hero-sub {
@@ -1393,8 +1398,8 @@
   <!-- THE PROBLEM -->
   <section class="problem-band" aria-labelledby="problem-head">
     <div class="problem-inner">
-      <h2 id="problem-head" class="problem-line reveal">Gram for gram, traditional incense releases over four times the smoke particles of a cigarette, is linked to a 70% higher risk of some airway cancers after 40 years of use, and often relies on synthetic fragrance or endangered&nbsp;wild&nbsp;oud.</h2>
-      <p class="problem-answer reveal reveal-d1">SubstitOud burns with 93% less smoke and is 100% natural, made with cultivated&nbsp;oud.</p>
+      <h2 id="problem-head" class="problem-line reveal">Traditional incense releases <strong>4 times more harmful smoke particles</strong> than cigarettes, exposing families to <strong>cancer-linked emissions</strong> from synthetic additives and endangered&nbsp;ingredients.</h2>
+      <p class="problem-answer reveal reveal-d1">SubstitOud is <strong>nearly smokeless</strong>, made with <strong>cultivated oud</strong> and <strong>100%&nbsp;natural&nbsp;materials</strong>.</p>
       <p class="problem-sources reveal reveal-d2">Sources: Mannix et al., <em>Science of the Total Environment</em>, 1996. Friborg et al., <em>Cancer</em>, 2008. IUCN Red List, 2018.</p>
     </div>
   </section>
@@ -1405,7 +1410,7 @@
       <div class="smokeless-grid">
         <div class="smokeless-text">
           <h2 id="smokeless-head" class="reveal" style="margin: 0;">
-            <span class="stat-num stat-num--line">Reduced smoke</span>
+            <span class="stat-num stat-num--line stat-num--long">93% reduced smoke</span>
           </h2>
           <p class="body-large reveal reveal-d1">
             Regular incense smoke has roughly 4.5x more PM2.5 than a cigarette.<sup style="font-size: 0.75em;">1</sup> SubstitOud is smokeless.
