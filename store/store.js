@@ -272,12 +272,10 @@
     var tierWrap = $('[data-tiers]', root);
     tierWrap.innerHTML = '';
     tiers.forEach(function (t, i) {
-      var off = tiers[0].unitPrice - t.unitPrice;
       var b = el('button', { type: 'button', class: 'tier', 'data-min': String(t.minQty), 'aria-pressed': 'false' }, [
         el('span', { class: 'tier-qty', text: i === 0 ? '1 box' : t.minQty + ' or more' }),
         el('span', { class: 'tier-price', text: money(t.unitPrice) }),
-        el('span', { class: 'tier-each', text: 'per box' }),
-        el('span', { class: 'tier-save', text: i === 0 ? '' : 'Save ' + off + '\u00a2' })
+        el('span', { class: 'tier-each', text: 'per box' })
       ]);
       b.addEventListener('click', function () { setShopQty(t.minQty); });
       tierWrap.appendChild(b);
