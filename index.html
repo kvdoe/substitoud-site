@@ -1186,7 +1186,7 @@
       color: var(--text);
     }
     .hero-product { align-items: center; min-height: 0; margin-left: -24px; }
-    .hero-product img { height: auto; max-height: 80vh; margin-top: 0; object-position: center; }
+    .hero-product img { height: auto; max-height: min(84vh, 820px); margin-top: 0; object-position: center; }
     .hero-cta { display: flex; gap: 12px; flex-wrap: wrap; margin-top: 30px; }
     .hero-note { margin: 14px 0 0; font-family: var(--sans); font-size: 15px; color: var(--text-muted); }
     .home-shop { padding: 20px 0 150px; }
@@ -1215,8 +1215,8 @@
       .hero-sub { font-size: 23px; }
     }
     @media (max-width: 720px) {
-      .hero-product { height: auto; margin: 8px -12px 4px; }
-      .hero-product img { height: auto; }
+      .hero-product { height: auto; margin: 4px 0 8px; }
+      .hero-product img { height: auto; max-height: 54vh; }
       .hero-sub { font-size: 20px; margin-top: 20px; max-width: none; }
       .hero-cta { margin-top: 22px; }
       .hero-block { padding-bottom: 8px; }
@@ -1258,7 +1258,7 @@
 
     <section class="hero" aria-labelledby="hero-tagline">
       <div class="hero-product reveal" aria-hidden="true">
-        <img src="store/img/boxes-fan.webp" alt="Seven SubstitOud incense boxes fanned out, the first one open to show the sticks" width="2000" height="1191" decoding="async" fetchpriority="high" />
+        <img src="store/img/boxes-fan.webp" alt="Three SubstitOud incense boxes fanned out, each with its tray of sticks pulled out a different length" width="1668" height="2015" decoding="async" fetchpriority="high" />
       </div>
 
       <div class="hero-text">
