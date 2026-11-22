@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>SubstitOud</title>
-  <meta name="description" content="Five high school founders: the team building SubstitOud, a utility-patented smokeless oud incense rooted in Vietnamese tradition." />
+  <title>Our team: The-Anh Dao, Karan Verma, Tim Kasian, Jonathan So, Rex Tsang | SubstitOud</title>
+  <meta name="description" content="Meet the SubstitOud team: founder The-Anh Dao; Karan Verma of Frisco, Texas, material researcher, growth lead and co-founder of Naturista Coffee Pods; Tim Kasian; Jonathan So; Rex Tsang." />
   <meta name="theme-color" content="#FBF8EF" />
 
   <link rel="canonical" href="https://substitoud.com/team.html" />
@@ -71,12 +71,30 @@
     {
       "@context": "https://schema.org",
       "@type": "Person",
+      "@id": "https://substitoud.com/team.html#karan-verma",
       "name": "Karan Verma",
+      "givenName": "Karan",
+      "familyName": "Verma",
+      "url": "https://substitoud.com/team.html#karan-verma",
+      "description": "Karan Verma of Frisco, Texas is the material researcher and growth lead at SubstitOud and the co-founder of Naturista Coffee Pods.",
       "affiliation": { "@type": "EducationalOrganization", "name": "Liberty High School" },
       "jobTitle": "Material Researcher & Growth Lead",
-      "worksFor": { "@type": "Organization", "name": "SubstitOud", "url": "https://substitoud.com/" },
-      "homeLocation": { "@type": "Place", "address": { "@type": "PostalAddress", "addressRegion": "TX", "addressCountry": "US" } },
+      "worksFor": [
+        { "@type": "Organization", "name": "SubstitOud", "url": "https://substitoud.com/" },
+        { "@id": "https://substitoud.com/team.html#naturista" }
+      ],
+      "homeLocation": { "@type": "Place", "address": { "@type": "PostalAddress", "addressLocality": "Frisco", "addressRegion": "TX", "addressCountry": "US" } },
+      "knowsAbout": ["Materials science", "Low-smoke incense", "Biodegradable coffee pods"],
       "image": "https://substitoud.com/karanvermapfp.webp"
+    },
+    {
+      "@context": "https://schema.org",
+      "@type": "Organization",
+      "@id": "https://substitoud.com/team.html#naturista",
+      "name": "Naturista Coffee Pods",
+      "alternateName": "Naturista",
+      "description": "Naturista makes dissolvable, biodegradable coffee pods.",
+      "founder": { "@id": "https://substitoud.com/team.html#karan-verma" }
     },
     {
       "@context": "https://schema.org",
@@ -498,7 +516,7 @@
   <main class="team-main">
     <section class="team-grid" aria-label="Our team">
 
-      <article class="team-card reveal">
+      <article id="the-anh-dao" class="team-card reveal">
         <div class="team-photo-wrap">
           <img class="team-photo" src="theanhpfp.webp" alt="The-Anh Dao, founder of SubstitOud" width="800" height="800" decoding="async" />
         </div>
@@ -509,7 +527,7 @@
         <p class="team-desc">The Anh created SubstitOud to combat the health and sustainability problems of incense's 6-millennia tradition. Currently, he focuses on the cultural integration of SubstitOud across Vietnam. Outside, he is passionate about religious philosophy and olfaction.</p>
       </article>
 
-      <article class="team-card reveal reveal-d1">
+      <article id="karan-verma" class="team-card reveal reveal-d1">
         <div class="team-photo-wrap">
           <img class="team-photo" src="karanvermapfp.webp" alt="Karan Verma, Material Researcher and Growth Lead at SubstitOud" width="800" height="800" decoding="async" />
         </div>
@@ -520,7 +538,7 @@
         <p class="team-desc">Karan refines the smokeless incense to reduce harmful emissions by prioritizing sustainable bio-based materials. He also leads temple expansion efforts and is the co-founder of Naturista Coffee Pods.</p>
       </article>
 
-      <article class="team-card reveal">
+      <article id="tim-kasian" class="team-card reveal">
         <div class="team-photo-wrap">
           <img class="team-photo" src="timkasianpfp.webp" alt="Tim Kasian, Research Lead at SubstitOud" width="800" height="800" decoding="async" loading="lazy" />
         </div>
@@ -531,7 +549,7 @@
         <p class="team-desc">Tim oversees all of SubstitOud's research on cultural perception that guides much of the project's philosophy. Outside, Tim is an avid combinatorial number theory researcher specializing in integer mosaics.</p>
       </article>
 
-      <article class="team-card reveal reveal-d2">
+      <article id="jonathan-so" class="team-card reveal reveal-d2">
         <div class="team-photo-wrap">
           <img class="team-photo" src="jsopfp.webp" alt="Jonathan So, Regional Director at SubstitOud" width="800" height="800" decoding="async" />
         </div>
@@ -543,7 +561,7 @@
       </article>
 
 
-      <article class="team-card reveal reveal-d1">
+      <article id="rex-tsang" class="team-card reveal reveal-d1">
         <div class="team-photo-wrap">
           <img class="team-photo" src="rextsangpfp.webp" alt="Rex Tsang, Regional Director at SubstitOud" width="800" height="800" decoding="async" loading="lazy" />
         </div>
