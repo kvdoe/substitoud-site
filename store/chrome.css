@@ -54,7 +54,7 @@ body.so-lock { overflow: hidden; }
   justify-content: space-between;
   gap: 24px;
 }
-.so-logo { display: inline-flex; align-items: center; gap: 12px; text-decoration: none; }
+.so-logo { display: inline-flex; align-items: center; gap: 12px; min-height: 44px; min-width: 44px; text-decoration: none; }
 .so-logo img { height: 36px; width: auto; display: block; }
 .so-wordmark {
   font-family: var(--so-sans);
@@ -301,6 +301,9 @@ body.so-lock { overflow: hidden; }
   .so-footer-brand, .so-footer-col:last-child { grid-column: 1 / -1; }
   .so-footer-brand img { height: 44px; }
   .so-footer-base { margin-top: 40px; padding-left: 24px; padding-right: 24px; }
+  /* comfortable tap targets */
+  .so-footer-col li + li { margin-top: 2px; }
+  .so-footer-col a { display: inline-block; padding: 9px 0; }
 }
 
 /* ---------- Cart drawer ---------- */
@@ -391,8 +394,8 @@ body.so-lock { overflow: hidden; }
 .so-line-price { font-size: 17px; font-weight: 600; color: var(--so-green); white-space: nowrap; }
 .so-line-price s { font-weight: 400; color: var(--so-muted); margin-right: 8px; }
 .so-remove {
-  margin-top: 12px;
-  padding: 0;
+  margin-top: 2px;
+  padding: 11px 0;
   border: 0;
   background: none;
   font-family: var(--so-sans);
@@ -456,7 +459,7 @@ body.so-lock { overflow: hidden; }
   color: var(--so-green);
 }
 .so-nudge button {
-  padding: 0; border: 0; background: none;
+  padding: 9px 0; margin: -9px 0; border: 0; background: none;
   font: inherit; font-weight: 600; color: var(--so-green);
   text-decoration: underline; text-underline-offset: 3px;
   cursor: pointer;
@@ -486,4 +489,14 @@ body.so-lock { overflow: hidden; }
 
 @media (prefers-reduced-motion: reduce) {
   .so-nav, .so-btn, .so-drawer, .so-scrim, .so-link::before, .so-footer-col a { transition: none; }
+}
+
+/* News page: its headline had no small-screen size and filled most of a phone screen */
+@media (max-width: 1024px) {
+  body[data-page="news"] .page-hero { padding: 80px 48px 48px; }
+  body[data-page="news"] .page-hero-title { font-size: 64px; }
+}
+@media (max-width: 720px) {
+  body[data-page="news"] .page-hero { padding: 56px 24px 32px; }
+  body[data-page="news"] .page-hero-title { font-size: 44px; }
 }

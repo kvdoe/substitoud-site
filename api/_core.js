@@ -58,7 +58,7 @@ function checkoutParams(catalog, cart, origin, env, email) {
     'line_items[0][price_data][unit_amount]': cart.unit,
     'line_items[0][price_data][product_data][name]': p.name,
     'line_items[0][price_data][product_data][description]':
-      p.sticksPerBox + ' sticks per box, ' + p.netWeight + '. ' + sticks + ' sticks in this order.',
+      p.sticksPerBox + ' sticks per box. ' + sticks + ' sticks in this order.',
     'line_items[0][price_data][product_data][images][0]': origin + '/' + p.image,
     'shipping_options[0][shipping_rate_data][type]': 'fixed_amount',
     'shipping_options[0][shipping_rate_data][display_name]': s.label,

@@ -1224,7 +1224,8 @@
     .home-shop-prices strong { font-weight: 600; color: var(--green-dark); }
     .home-shop-prices em { font-style: normal; color: #8B1A1A; font-weight: 600; margin-left: 10px; }
     .home-shop-actions { display: flex; align-items: center; gap: 22px; flex-wrap: wrap; }
-    .home-shop-link { font-family: var(--sans); font-size: 16px; font-weight: 600; color: var(--green-dark); text-decoration: underline; text-underline-offset: 4px; }
+    .home-shop-link { display: inline-block; padding: 11px 0; font-family: var(--sans); font-size: 16px; font-weight: 600; color: var(--green-dark); text-decoration: underline; text-underline-offset: 4px; }
+    @media (max-width: 720px) { .patent-code { padding: 14px 6px; margin-left: 2px; } }
     @media (max-width: 1180px) {
       .home-shop-inner { padding: 0 48px; gap: 56px; }
       .hero-sub { font-size: 23px; }
@@ -1396,10 +1397,10 @@
 
         <div>
           <div class="slider-frame reveal" id="sliderFrame">
-            <video class="slider-side" muted loop autoplay playsinline preload="auto" id="vidAfter">
+            <video class="slider-side" muted loop autoplay playsinline preload="metadata" poster="store/img/smoke-substitoud-poster.webp" id="vidAfter">
               <source src="substitoud-burning.mp4" type="video/mp4">
             </video>
-            <video class="slider-side is-before" muted loop autoplay playsinline preload="auto" id="vidBefore">
+            <video class="slider-side is-before" muted loop autoplay playsinline preload="metadata" poster="store/img/smoke-regular-poster.webp" id="vidBefore">
               <source src="normal-burning.mp4" type="video/mp4">
             </video>
             <div class="slider-handle" id="sliderHandle" role="slider" aria-label="Drag to compare regular incense and SubstitOud" aria-valuemin="0" aria-valuemax="100" aria-valuenow="75" aria-valuetext="75 percent SubstitOud visible" tabindex="0">
