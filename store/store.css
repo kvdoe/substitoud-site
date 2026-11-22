@@ -420,7 +420,8 @@ body[data-page="shop"] { --so-muted: #6B4423; }
 
 /* ---------- Shop page: full-width stage ---------- */
 /* The shop runs edge to edge on the same line as the navigation. The product sits on a warm
-   stage with dark green corners, the buying controls on a card. */
+   stage with dark green corners, the buying controls on a card. On desktop the stage is sized
+   to the window, so its lower corner and the top of the details row show without scrolling. */
 body[data-page="shop"] .wrap { max-width: 1480px; }
 body[data-page="shop"] .so-footer-inner, body[data-page="shop"] .so-footer-base { max-width: 1480px; }
 
@@ -448,11 +449,52 @@ body[data-page="shop"] .gallery-thumb { width: 84px; border-radius: 0; }
 body[data-page="shop"] .gallery-main { border-radius: 0; }
 body[data-page="shop"] .sleeve-photo { border-radius: 0; }
 body[data-page="shop"] .buy { background: var(--so-bg); padding: clamp(28px, 3.2vw, 48px); }
-body[data-page="shop"] .buy .accordion { margin-top: 34px; }
-body[data-page="shop"] .buy .accordion details:last-child { border-bottom: 0; }
-body[data-page="shop"] .buy .accordion details:last-child .acc-body { padding-bottom: 4px; }
-body[data-page="shop"] .buy .accordion details:last-child summary { padding-bottom: 4px; }
-body[data-page="shop"] .buy .accordion details[open]:last-child summary { padding-bottom: 18px; }
+.buy-more { margin-top: 20px; font-size: 15px; }
+.buy-more .textlink { font-weight: 500; }
+
+@media (min-width: 1081px) {
+  body[data-page="shop"] .product {
+    --peek: 78px;                                   /* how much of the details row shows under the stage */
+    --pad-top: clamp(24px, 4.4svh, 56px);
+    --pad-bottom: clamp(28px, 5svh, 64px);
+    --stage-h: clamp(430px, calc(100svh - var(--so-nav-h) - var(--peek) - var(--pad-top) - var(--pad-bottom)), 800px);
+    padding: var(--pad-top) 0 var(--pad-bottom);
+  }
+  body[data-page="shop"] .product-grid { grid-template-columns: auto minmax(0, 1fr); align-items: stretch; }
+  body[data-page="shop"] .gallery { position: static; grid-template-columns: 84px auto; align-items: start; }
+  body[data-page="shop"] .gallery-thumbs { max-height: var(--stage-h); }
+  body[data-page="shop"] .gallery-stage { width: calc(var(--stage-h) * 0.8); }
+  body[data-page="shop"] .gallery-main { width: 100%; height: var(--stage-h); aspect-ratio: auto; }
+  body[data-page="shop"] .gallery-main.is-video { height: auto; aspect-ratio: 4 / 3; }
+  body[data-page="shop"] .buy {
+    min-height: var(--stage-h);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: clamp(20px, 3.4svh, 48px) clamp(28px, 3.2vw, 56px);
+  }
+}
+/* shorter windows: tighten the card so it still fits beside the photo */
+@media (min-width: 1081px) and (max-height: 860px) {
+  body[data-page="shop"] .buy-title { font-size: clamp(36px, 3.4vw, 48px); }
+  body[data-page="shop"] .buy-price { margin-top: 16px; }
+  body[data-page="shop"] .buy-price-now { font-size: 42px; }
+  body[data-page="shop"] .buy-facts { margin-top: 6px; }
+  body[data-page="shop"] .tiers-label { margin: 22px 0 10px; }
+  body[data-page="shop"] .tier { min-height: 104px; padding: 12px 12px 10px; }
+  body[data-page="shop"] .tier-price { font-size: 27px; }
+  body[data-page="shop"] .buy-row { margin-top: 16px; }
+  body[data-page="shop"] .buy-more { margin-top: 14px; }
+}
+@media (min-width: 1081px) and (max-height: 700px) {
+  body[data-page="shop"] .product { --peek: 64px; --pad-top: 20px; --pad-bottom: 24px; }
+  body[data-page="shop"] .buy-title { font-size: 36px; }
+  body[data-page="shop"] .buy-price-now { font-size: 36px; }
+  body[data-page="shop"] .tiers-label { margin: 14px 0 8px; }
+  body[data-page="shop"] .tier { min-height: 92px; }
+  body[data-page="shop"] .tier-price { font-size: 24px; }
+  body[data-page="shop"] .buy { padding-top: 16px; padding-bottom: 16px; }
+}
 
 .assure { padding: 0; border-bottom: 1px solid var(--so-line); }
 .assure-grid { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); }
@@ -461,11 +503,13 @@ body[data-page="shop"] .buy .accordion details[open]:last-child summary { paddin
 .assure-grid svg { width: 28px; height: 28px; margin-top: 2px; color: var(--so-green); }
 .assure-grid strong { display: block; font-family: var(--so-serif); font-size: 23px; font-weight: 600; line-height: 1.2; color: var(--so-green); }
 .assure-grid span { display: block; margin-top: 4px; font-size: 15px; line-height: 1.45; color: var(--so-muted); }
+@media (min-width: 1081px) {
+  .assure-grid li { padding-top: 24px; padding-bottom: 28px; }
+}
 
-.faq-grid { display: grid; grid-template-columns: minmax(0, 0.8fr) minmax(0, 1.4fr); gap: clamp(40px, 6vw, 96px); align-items: start; }
-.faq-grid .accordion { margin-top: 0; }
-.faq-grid .acc-body { max-width: 46em; }
-.faq-head .faq-more { margin-top: 22px; }
+.faq-grid { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: clamp(40px, 6vw, 96px); align-items: start; }
+.faq-grid .accordion { margin-top: 32px; }
+.faq-grid .acc-body { max-width: 40em; }
 
 @media (max-width: 1080px) {
   body[data-page="shop"] .gallery { grid-template-columns: 1fr; }
@@ -481,7 +525,7 @@ body[data-page="shop"] .buy .accordion details[open]:last-child summary { paddin
   body[data-page="shop"] .product-grid { grid-template-columns: 1fr; }
   body[data-page="shop"] .buy { padding: 26px 16px 22px; }
   body[data-page="shop"] .buy-row .so-btn { flex-basis: 150px; }
-  .faq-grid { grid-template-columns: 1fr; gap: 28px; }
+  .faq-grid { grid-template-columns: 1fr; gap: 56px; }
 }
 @media (max-width: 560px) {
   .assure-grid { grid-template-columns: 1fr; }
