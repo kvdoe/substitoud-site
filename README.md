@@ -45,10 +45,6 @@ Edit `store/catalog.json`. Prices are in cents. The cart, the price tiles on the
 
 Prices are also printed as plain text in a few places that need a manual edit: the "Before you buy" answer in `shop.html`, the price list and hero button in `index.html`, and the bundle table in `faq.html`.
 
-## Shop page typeface
-
-The shop page asks for Gotham and falls back to Montserrat, because Gotham is a licensed font and its files are not in this project. To serve real Gotham, add your licensed web font files (or Cloud.typography kit) and keep the font stack in `store/store.css` as it is.
-
 ## Local preview
 
 ```

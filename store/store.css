@@ -414,36 +414,6 @@ button, input, select, textarea { font: inherit; color: inherit; }
   * { transition-duration: 0.01ms !important; animation-duration: 0.01ms !important; }
 }
 
-/* ---------- Shop page type ----------
-   Gotham where the visitor's device has it. Gotham is a licensed typeface and its files are not
-   part of this site, so everyone else gets Montserrat, its closest free relative. To serve real
-   Gotham, add your licensed web font files or Cloud.typography kit and keep this stack as is. */
-body[data-page="shop"] main {
-  --so-serif: "Gotham", "Gotham SSm A", "Gotham SSm B", "Montserrat", "Helvetica Neue", Arial, sans-serif;
-  --so-sans: "Gotham", "Gotham SSm A", "Gotham SSm B", "Montserrat", "Helvetica Neue", Arial, sans-serif;
-  font-family: var(--so-sans);
-  font-size: 16px;
-}
-body[data-page="shop"] .buy-title { font-weight: 600; font-size: clamp(28px, 3vw, 42px); line-height: 1.14; letter-spacing: -0.02em; }
-body[data-page="shop"] .buy-sub { font-size: 17px; line-height: 1.6; max-width: 34em; }
-body[data-page="shop"] .buy-price-now { font-size: 38px; font-weight: 600; letter-spacing: -0.02em; }
-body[data-page="shop"] .buy-facts { font-size: 15px; }
-body[data-page="shop"] .tiers-label { font-size: 14.5px; }
-body[data-page="shop"] .tier { padding: 14px 12px 12px; min-height: 112px; }
-body[data-page="shop"] .tier-qty { font-size: 12.5px; }
-body[data-page="shop"] .tier-price { font-size: 21px; font-weight: 600; line-height: 1.3; letter-spacing: -0.01em; }
-body[data-page="shop"] .tier-each { font-size: 12.5px; }
-body[data-page="shop"] .tier-save { font-size: 12.5px; }
-body[data-page="shop"] .buy-total { font-size: 15px; }
-body[data-page="shop"] .buy-assure { font-size: 15px; }
-body[data-page="shop"] .accordion summary { font-size: 17px; font-weight: 600; letter-spacing: -0.005em; }
-body[data-page="shop"] .accordion .acc-body { font-size: 15.5px; }
-body[data-page="shop"] main .h2 { font-weight: 600; font-size: clamp(26px, 2.8vw, 38px); line-height: 1.16; letter-spacing: -0.02em; }
-body[data-page="shop"] main .h3 { font-size: 19px; font-weight: 600; letter-spacing: -0.005em; }
-body[data-page="shop"] main .lede { font-size: 18px; line-height: 1.65; }
-body[data-page="shop"] .fact p { font-size: 15.5px; }
-body[data-page="shop"] .band p { font-size: 17px; line-height: 1.65; }
-body[data-page="shop"] .product + .band { margin-top: 0; }
 @media (max-width: 420px) {
   body[data-page="shop"] .buy-row .so-btn { font-size: 15px; padding: 0 12px; }
 }
