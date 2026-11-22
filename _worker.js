@@ -110,6 +110,7 @@ function orderSummary(session) {
     status: session.status,
     email: cust.email || session.customer_email || null,
     phone: cust.phone || (ship && ship.phone) || null,
+    phoneRequired: !!(session.phone_number_collection && session.phone_number_collection.enabled),
     name: (ship && ship.name) || cust.name || null,
     address: ship && ship.address ? ship.address : null,
     items: items,
