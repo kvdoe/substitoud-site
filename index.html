@@ -74,7 +74,7 @@
     "@context": "https://schema.org",
     "@type": "Product",
     "name": "SubstitOud Incense",
-    "description": "Virtually smokeless, utility-patented oud incense, hand-pressed in Bình Dương and Sapa, Vietnam. Made with cultivated oud and coconut shell charcoal.",
+    "description": "Smokeless, utility-patented oud incense, hand-pressed in Bình Dương and Sapa, Vietnam. Made with cultivated oud and coconut shell charcoal.",
     "brand": { "@type": "Brand", "name": "SubstitOud" },
     "image": "https://substitoud.com/store/img/box-on-shelf.jpg",
     "manufacturer": { "@type": "Organization", "name": "SubstitOud" },
@@ -1185,6 +1185,18 @@
       line-height: 1.45;
       color: var(--text);
     }
+    /* "Reduced smoke" and "Sustainable oud": heading on one line, text in two balanced lines */
+    .stat-num--line { white-space: nowrap; font-size: clamp(44px, 5.9vw, 84px); line-height: 1.04; }
+    .smokeless-text .body-large, .sustainable-text .body-large { text-wrap: balance; }
+    @media (min-width: 721px) {
+      .smokeless-grid { grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr); }
+      .sustainable-grid { grid-template-columns: minmax(0, 1fr) minmax(0, 1.1fr); }
+      .smokeless-text, .sustainable-text { max-width: none; }
+      .smokeless-text .body-large, .sustainable-text .body-large { font-size: clamp(20px, 1.68vw, 24px); }
+    }
+    @media (max-width: 720px) {
+      .stat-num--line { font-size: clamp(40px, 13.5vw, 60px); }
+    }
     .hero-product { align-items: center; min-height: 0; margin-left: -24px; }
     .hero-product img { height: auto; max-height: min(84vh, 820px); margin-top: 0; object-position: center; }
     .hero-cta { display: flex; gap: 12px; flex-wrap: wrap; margin-top: 30px; }
@@ -1278,7 +1290,7 @@
             <path class="p2" d="M 6 13 Q 60 9, 110 11 T 200 10 T 234 12" />
           </svg></span>.</span>
         </h1>
-        <p class="hero-sub reveal reveal-d3">A virtually smokeless oud incense, patented and made with sustainably cultivated agarwood.</p>
+        <p class="hero-sub reveal reveal-d3">A smokeless oud incense, patented and made with sustainably cultivated agarwood.</p>
         <div class="hero-cta reveal reveal-d3">
           <a class="so-btn so-btn--large" href="shop.html">Shop the box, $4.99</a>
           <a class="so-btn so-btn--ghost so-btn--large" href="#smokeless-head">See the smoke test</a>
@@ -1365,10 +1377,10 @@
       <div class="smokeless-grid">
         <div class="smokeless-text">
           <h2 id="smokeless-head" class="reveal" style="margin: 0;">
-            <span class="stat-num">Reduced<br />smoke</span>
+            <span class="stat-num stat-num--line">Reduced smoke</span>
           </h2>
           <p class="body-large reveal reveal-d1">
-            Regular incense smoke has roughly 4.5x more PM2.5 than a cigarette.<sup style="font-size: 0.75em;">1</sup> SubstitOud is virtually smokeless.
+            Regular incense smoke has roughly 4.5x more PM2.5 than a cigarette.<sup style="font-size: 0.75em;">1</sup> SubstitOud is smokeless.
           </p>
           <p class="footnote reveal reveal-d2">
             1. Mannix, R. C. et al. <em>Physical characterization of incense aerosols.</em> Science of the Total Environment, 1996.
@@ -1408,7 +1420,7 @@
 
         <div class="sustainable-text">
           <h2 id="sustainable-head" class="reveal" style="margin: 0;">
-            <span class="stat-num">Sustainable<br />oud</span>
+            <span class="stat-num stat-num--line">Sustainable oud</span>
           </h2>
           <p class="body-large reveal reveal-d1">
             Regular incense often uses synthetic or wild oud, of which 80% are gone.<sup style="font-size: 0.75em;">2</sup> We use sustainably cultivated oud.
