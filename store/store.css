@@ -162,9 +162,6 @@ button, input, select, textarea { font: inherit; color: inherit; }
 
 .buy-row { display: flex; align-items: center; gap: 14px; margin-top: 22px; flex-wrap: wrap; }
 .buy-row .so-btn { flex: 1 1 220px; }
-.buy-total { margin-top: 16px; font-size: 16px; line-height: 1.5; color: var(--so-text); min-height: 1.5em; }
-.buy-total strong { font-weight: 600; color: var(--so-green); }
-.buy-total .save { color: var(--so-red); font-weight: 600; }
 .buy-assure { list-style: none; margin: 26px 0 0; padding: 22px 0 0; border-top: 1px solid var(--so-line); display: grid; gap: 10px; font-size: 15.5px; color: var(--so-text); }
 .buy-assure li { display: grid; grid-template-columns: 22px 1fr; gap: 10px; align-items: start; }
 .buy-assure svg { width: 20px; height: 20px; margin-top: 3px; color: var(--so-green); }
