@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Order confirmed | SubstitOud</title>
+  <meta name="description" content="Your SubstitOud order confirmation." />
+  <meta name="theme-color" content="#FBF8EF" />
+  <meta name="robots" content="noindex" />
+
+  <link rel="icon" type="image/svg+xml" href="favicon.svg" />
+  <link rel="icon" type="image/png" sizes="96x96" href="favicon-96x96.png" />
+  <link rel="shortcut icon" href="favicon.ico" />
+  <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png" />
+  <link rel="manifest" href="site.webmanifest" />
+
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="SubstitOud" />
+  <meta property="og:title" content="Order confirmed | SubstitOud" />
+  <meta property="og:description" content="Your SubstitOud order confirmation." />
+  <meta property="og:image" content="https://substitoud.com/store/img/shop-og.jpg" />
+  <meta name="twitter:card" content="summary_large_image" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Plus+Jakarta+Sans:wght@400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="store/chrome.css" />
+  <link rel="stylesheet" href="store/store.css" />
+</head>
+<body class="so-has-nav" data-page="order-confirmed">
+
+  <header class="so-nav">
+    <div class="so-nav-inner">
+      <a href="index.html" class="so-logo" aria-label="SubstitOud home">
+        <img src="substitoud_logo.png" alt="" width="500" height="500" decoding="async" />
+        <span class="so-wordmark">SubstitOud</span>
+      </a>
+      <div class="so-nav-right">
+        <nav class="so-links" id="so-links" aria-label="Primary">
+          <a href="index.html" class="so-link">Home</a>
+          <a href="about.html" class="so-link">Our story</a>
+          <a href="team.html" class="so-link">Our team</a>
+          <a href="news.html" class="so-link so-link--news">Latest news</a>
+        </nav>
+        <div class="so-nav-actions">
+          <a href="shop.html" class="so-btn so-btn--small">Shop</a>
+          <a href="cart.html" class="so-cart-btn" aria-label="Cart"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 8h14l-1 12H6L5 8z"/><path d="M9 8V6.5a3 3 0 0 1 6 0V8"/></svg><span class="so-cart-count" hidden>0</span></a>
+        </div>
+        <button type="button" class="so-menu-btn" aria-expanded="false" aria-controls="so-links" aria-label="Menu">
+          <svg class="so-bars" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" aria-hidden="true"><path d="M4 7.5h16M4 12h16M4 16.5h16"/></svg>
+          <svg class="so-x" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" aria-hidden="true"><path d="M5 5l14 14M19 5L5 19"/></svg>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main class="confirm" data-confirm>
+    <div class="wrap wrap--narrow">
+
+      <div class="state" data-state="loading">
+        <p class="lede muted">Loading your order&hellip;</p>
+      </div>
+
+      <div class="state" data-state="ok" hidden>
+        <ol class="steps" aria-label="Checkout steps">
+          <li class="is-done">Cart</li>
+          <li class="is-done">Shipping and payment</li>
+          <li aria-current="step">Confirmation</li>
+        </ol>
+        <div class="confirm-mark"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></div>
+        <h1 class="display">Thank you<span data-o="first"></span>. Your order is in.</h1>
+        <p class="lede" style="margin-top:18px">Order <strong data-o="ref"></strong>. <span data-real-only>A receipt is on its way to <span data-o="email"></span>.</span></p>
+        <p class="notice" data-demo-only hidden style="margin-top:24px">This was a test order. Nothing was charged and nothing will ship.</p>
+
+        <div class="confirm-grid">
+          <div class="card">
+            <h2>Shipping to</h2>
+            <address data-o="address"></address>
+          </div>
+          <div class="card">
+            <h2>Order summary</h2>
+            <dl class="so-sum" data-o="summary"></dl>
+          </div>
+        </div>
+
+        <div class="next">
+          <h2 class="h3">What happens next</h2>
+          <ol>
+            <li><span>We pack your order within 3 business days.</span></li>
+            <li><span>It ships free and usually arrives 3 to 7 business days after it leaves us.</span></li>
+            <li><span>To change anything, email <a class="textlink" href="mailto:contact@substitoud.com">contact@substitoud.com</a> with your order number.</span></li>
+          </ol>
+        </div>
+
+        <div class="confirm-actions">
+          <a class="so-btn" href="shop.html">Back to the shop</a>
+          <a class="so-btn so-btn--ghost" href="about.html">Read our story</a>
+        </div>
+      </div>
+
+      <div class="state" data-state="pending" hidden>
+        <h1 class="display">Your payment is still processing.</h1>
+        <p class="lede" style="margin-top:18px">Order <strong data-o="ref"></strong> is saved. Stripe emails a receipt to <span data-o="email"></span> as soon as the payment clears. If nothing arrives within an hour, email <a class="textlink" href="mailto:contact@substitoud.com">contact@substitoud.com</a>.</p>
+      </div>
+
+      <div class="state" data-state="error" hidden>
+        <h1 class="display">We could not load your order details.</h1>
+        <p class="lede" style="margin-top:18px">If you finished paying, your order went through and Stripe has emailed your receipt. For anything else, email <a class="textlink" href="mailto:contact@substitoud.com">contact@substitoud.com</a>.</p>
+        <div class="confirm-actions"><a class="so-btn" href="shop.html">Back to the shop</a></div>
+      </div>
+
+      <div class="state" data-state="missing" hidden>
+        <h1 class="display">There is no order to show here.</h1>
+        <p class="lede" style="margin-top:18px">This page appears after checkout. If you are looking for a past order, check the receipt in your email.</p>
+        <div class="confirm-actions"><a class="so-btn" href="shop.html">Shop the box</a></div>
+      </div>
+
+    </div>
+  </main>
+  <footer class="so-footer">
+    <div class="so-footer-inner">
+      <div class="so-footer-brand">
+        <a href="index.html" aria-label="SubstitOud home"><img src="substitoud_logo.png" alt="" width="500" height="500" loading="lazy" decoding="async" /></a>
+        <p>Incense that preserves tradition.</p>
+      </div>
+      <div class="so-footer-col">
+        <h2>Shop</h2>
+        <ul>
+          <li><a href="shop.html">Shop the box</a></li>
+          <li><a href="cart.html">Your cart</a></li>
+          <li><a href="wholesale.html">Wholesale</a></li>
+        </ul>
+      </div>
+      <div class="so-footer-col">
+        <h2>SubstitOud</h2>
+        <ul>
+          <li><a href="about.html">Our story</a></li>
+          <li><a href="team.html">Our team</a></li>
+          <li><a href="news.html">Latest news</a></li>
+        </ul>
+      </div>
+      <div class="so-footer-col">
+        <h2>Help</h2>
+        <ul>
+          <li><a href="faq.html">Questions and answers</a></li>
+          <li><a href="shipping-returns.html">Shipping and returns</a></li>
+          <li><a href="privacy.html">Privacy</a></li>
+          <li><a href="terms.html">Terms of sale</a></li>
+          <li><a href="mailto:contact@substitoud.com">contact@substitoud.com</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="so-footer-base">
+      <p>&copy; 2026 SubstitOud Co., Ltd. Made in B&igrave;nh D&#432;&#417;ng, Vietnam.</p>
+      <p>Payments are handled securely by Stripe.</p>
+    </div>
+  </footer>
+
+  <script src="store/store.js" defer></script>
+</body>
+</html>

@@ -1,0 +1,8 @@
+User-agent: *
+Allow: /
+Disallow: /api/
+Disallow: /cart.html
+Disallow: /test-checkout.html
+Disallow: /order-confirmed.html
+
+Sitemap: https://substitoud.com/sitemap.xml

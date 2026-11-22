@@ -1,0 +1,29 @@
+{
+  "currency": "usd",
+  "product": {
+    "id": "box",
+    "name": "SubstitOud Low-Smoke Agarwood Incense",
+    "shortName": "Low-smoke agarwood incense",
+    "description": "One 50 g box of 60 coreless, low-smoke agarwood incense sticks. Made in Binh Duong, Vietnam.",
+    "sticksPerBox": 60,
+    "netWeight": "50 g / 1.76 oz",
+    "image": "store/img/box-on-shelf.jpg",
+    "thumb": "store/img/box-thumb.webp",
+    "maxPerOrder": 48,
+    "tiers": [
+      { "minQty": 1, "unitPrice": 499 },
+      { "minQty": 3, "unitPrice": 449 },
+      { "minQty": 6, "unitPrice": 399 },
+      { "minQty": 12, "unitPrice": 349 }
+    ]
+  },
+  "shipping": {
+    "countries": ["US"],
+    "amount": 0,
+    "label": "Free US shipping",
+    "minBusinessDays": 3,
+    "maxBusinessDays": 7
+  },
+  "productionHosts": ["substitoud.com", "www.substitoud.com"],
+  "contactEmail": "contact@substitoud.com"
+}
