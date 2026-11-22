@@ -1189,6 +1189,8 @@
     .stat-num--line { white-space: nowrap; font-size: clamp(44px, 5.9vw, 84px); line-height: 1.04; }
     .smokeless-text .body-large, .sustainable-text .body-large { text-wrap: balance; }
     @media (min-width: 721px) {
+      /* these two sections were each forced to fill a whole screen; let them be as tall as their content */
+      section[aria-labelledby="smokeless-head"], section[aria-labelledby="sustainable-head"] { min-height: 0; padding: 104px 0; }
       .smokeless-grid { grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr); }
       .sustainable-grid { grid-template-columns: minmax(0, 1fr) minmax(0, 1.1fr); }
       .smokeless-text, .sustainable-text { max-width: none; }

@@ -389,12 +389,14 @@
     if (shopStepper) shopStepper.setValue(shopQty);
     var p = priceFor(shopQty);
     $all('[data-tiers] .tier').forEach(function (b, i) { b.setAttribute('aria-pressed', i === p.tierIndex ? 'true' : 'false'); });
-    var now = $('[data-price-now]'), was = $('[data-price-was]'), total = $('[data-buy-total]');
-    if (now) now.textContent = money(p.unit);
-    if (was) { was.hidden = p.savings === 0; was.innerHTML = 'was <s>' + money(p.base) + '</s>'; }
+    /* the large figure is what this many boxes cost in total; the per-box price is in the line under the button */
+    var now = $('[data-price-now]'), unit = $('[data-price-unit]'), was = $('[data-price-was]'), total = $('[data-buy-total]');
+    if (now) now.textContent = money(p.subtotal);
+    if (unit) unit.textContent = 'for ' + plural(shopQty, 'box', 'boxes');
+    if (was) { was.hidden = p.savings === 0; was.innerHTML = 'was <s>' + money(p.base * shopQty) + '</s>'; }
     if (total) {
       var sticks = shopQty * catalog.product.sticksPerBox;
-      total.innerHTML = '<strong>' + plural(shopQty, 'box', 'boxes') + ', ' + sticks + ' sticks: ' + money(p.subtotal) + '</strong> with free US shipping.' +
+      total.innerHTML = '<strong>' + money(p.unit) + ' per box, ' + sticks + ' sticks,</strong> with free US shipping.' +
         (p.savings > 0 ? ' <span class="save">You save ' + money(p.savings) + '.</span>' : '') +
         (p.next ? ' Add ' + plural(p.next.need, 'more box', 'more boxes') + ' and each one is ' + money(p.next.unitPrice) + '.' : '');
     }
