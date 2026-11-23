@@ -125,7 +125,8 @@ button, input, select, textarea { font: inherit; color: inherit; }
 .buy-sub { margin-top: 14px; font-family: var(--so-serif); font-size: 23px; line-height: 1.45; color: var(--so-text); max-width: 30em; }
 .buy-price { display: flex; align-items: baseline; gap: 12px; flex-wrap: wrap; margin-top: 26px; }
 .buy-price-now { font-family: var(--so-serif); font-size: 50px; font-weight: 400; line-height: 1; color: var(--so-green); }
-.buy-price-unit { font-size: 16px; color: var(--so-muted); white-space: nowrap; }
+/* "for 6 boxes" is kept for screen readers only; the button already says how many boxes */
+.buy-price-unit { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
 .buy-price-was { font-size: 18px; color: var(--so-muted); white-space: nowrap; }
 .buy-facts { margin: 10px 0 0; font-size: 15.5px; color: var(--so-muted); }
 .buy-facts strong { font-weight: 600; color: var(--so-green); }
