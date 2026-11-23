@@ -46,9 +46,16 @@ async function stripeRequest(env, fetchImpl, method, path, params) {
   return { ok: res.ok, status: res.status, data: data };
 }
 
+/* Shipping for an order: the flat fee, or free once the order reaches shipping.freeFromQty boxes. */
+function shippingFor(catalog, qty) {
+  var s = catalog.shipping;
+  var free = !s.amount || (Number.isInteger(s.freeFromQty) && s.freeFromQty > 0 && qty >= s.freeFromQty);
+  return { amount: free ? 0 : s.amount, label: free ? (s.freeLabel || 'Free US shipping') : s.label };
+}
+
 function checkoutParams(catalog, cart, origin, env, email, cleanUrls) {
   var ext = cleanUrls ? '' : '.html';   /* some hosts serve pages without the .html ending */
-  var p = catalog.product, s = catalog.shipping;
+  var p = catalog.product, s = catalog.shipping, ship = shippingFor(catalog, cart.qty);
   var sticks = cart.qty * p.sticksPerBox;
   var params = {
     'mode': 'payment',
@@ -62,8 +69,8 @@ function checkoutParams(catalog, cart, origin, env, email, cleanUrls) {
       p.sticksPerBox + ' sticks per box. ' + sticks + ' sticks in this order.',
     'line_items[0][price_data][product_data][images][0]': origin + '/' + p.image,
     'shipping_options[0][shipping_rate_data][type]': 'fixed_amount',
-    'shipping_options[0][shipping_rate_data][display_name]': s.label,
-    'shipping_options[0][shipping_rate_data][fixed_amount][amount]': s.amount,
+    'shipping_options[0][shipping_rate_data][display_name]': ship.label,
+    'shipping_options[0][shipping_rate_data][fixed_amount][amount]': ship.amount,
     'shipping_options[0][shipping_rate_data][fixed_amount][currency]': catalog.currency,
     'shipping_options[0][shipping_rate_data][delivery_estimate][minimum][unit]': 'business_day',
     'shipping_options[0][shipping_rate_data][delivery_estimate][minimum][value]': s.minBusinessDays,

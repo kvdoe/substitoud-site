@@ -35,7 +35,9 @@
     "amount": 399,
     "label": "US shipping",
     "minBusinessDays": 3,
-    "maxBusinessDays": 7
+    "maxBusinessDays": 7,
+    "freeFromQty": 3,
+    "freeLabel": "Free US shipping"
   },
   "contactEmail": "contact@substitoud.com"
 }

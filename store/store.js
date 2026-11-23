@@ -145,6 +145,12 @@
       ])
     ]);
   }
+  /* shipping for a number of boxes: the flat fee, or free from catalog.shipping.freeFromQty boxes (the server applies the same rule) */
+  function shipFor(qty) {
+    var s = catalog && catalog.shipping;
+    if (!s || !s.amount) return 0;
+    return (s.freeFromQty > 0 && qty >= s.freeFromQty) ? 0 : s.amount;
+  }
   function nudgeNode(p) {
     if (!p.next) return null;
     var after = priceFor(p.next.minQty);
@@ -152,7 +158,9 @@
     var btn = el('button', { type: 'button', text: 'Add ' + plural(p.next.need, 'more box', 'more boxes') });
     btn.addEventListener('click', function () { setQty(p.next.minQty); });
     node.appendChild(btn);
-    var msg = after.subtotal < p.subtotal
+    var msg = (shipFor(p.qty) > 0 && shipFor(p.next.minQty) === 0)
+      ? ' for free shipping, and every box drops to ' + money(p.next.unitPrice) + '.'
+      : after.subtotal < p.subtotal
       ? ' and your total goes down to ' + money(after.subtotal) + ', because every box drops to ' + money(p.next.unitPrice) + '.'
       : ' and every box drops to ' + money(p.next.unitPrice) + '. You would save ' + money(after.savings) + ' on ' + p.next.minQty + ' boxes.';
     node.appendChild(document.createTextNode(msg));
@@ -161,7 +169,7 @@
   function summaryNode(p) {
     var rows = '<div><dt>' + plural(p.qty, 'box', 'boxes') + ' at ' + money(p.base) + '</dt><dd>' + money(p.base * p.qty) + '</dd></div>';
     if (p.savings > 0) rows += '<div class="so-sum-save"><dt>Bundle saving</dt><dd>−' + money(p.savings) + '</dd></div>';
-    var ship = (catalog && catalog.shipping && catalog.shipping.amount) || 0;
+    var ship = shipFor(p.qty);
     rows += '<div><dt>Shipping in the US</dt><dd>' + (ship ? money(ship) : 'Free') + '</dd></div>';
     rows += '<div class="so-sum-total"><dt>Total</dt><dd>' + money(p.subtotal + ship) + '</dd></div>';
     return el('dl', { class: 'so-sum', html: rows });
