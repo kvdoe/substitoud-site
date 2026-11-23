@@ -57,12 +57,11 @@ button, input, select, textarea { font: inherit; color: inherit; }
 .textlink { color: var(--so-green); font-weight: 600; text-decoration: underline; text-underline-offset: 4px; text-decoration-thickness: 1.5px; }
 .textlink:hover { text-decoration-thickness: 2.5px; }
 
-/* The sleeve frame: ochre panel inside a double green keyline, taken from the box itself */
+/* The framed panel: one green keyline, soft corners */
 .frame {
   position: relative;
   border: 1.5px solid var(--so-green);
-  outline: 1px solid var(--so-green);
-  outline-offset: -6px;
+  border-radius: var(--so-r-lg);
 }
 
 /* ---------- Product page ---------- */
@@ -125,7 +124,8 @@ button, input, select, textarea { font: inherit; color: inherit; }
 .buy-sub { margin-top: 14px; font-family: var(--so-serif); font-size: 23px; line-height: 1.45; color: var(--so-text); max-width: 30em; }
 .buy-price { display: flex; align-items: baseline; gap: 12px; flex-wrap: wrap; margin-top: 26px; }
 .buy-price-now { font-family: var(--so-serif); font-size: 50px; font-weight: 400; line-height: 1; color: var(--so-green); }
-.buy-price-unit { font-size: 16px; color: var(--so-muted); white-space: nowrap; }
+/* "for 3 boxes" stays for screen readers; on screen the button already says how many boxes */
+.buy-price-unit { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
 .buy-price-was { font-size: 18px; color: var(--so-muted); white-space: nowrap; }
 .buy-facts { margin: 10px 0 0; font-size: 15.5px; color: var(--so-muted); }
 
@@ -136,28 +136,24 @@ button, input, select, textarea { font: inherit; color: inherit; }
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  gap: 2px;
-  min-height: 96px;
-  padding: 16px 14px 14px;
+  justify-content: center;
+  gap: 4px;
+  min-height: 84px;
+  padding: 14px 16px;
   background: var(--so-bg);
   border: 1.5px solid var(--so-line);
-  border-radius: 0;
+  border-radius: var(--so-r);
   text-align: left;
   cursor: pointer;
   transition: background 0.2s ease, border-color 0.2s ease;
 }
 .tier:hover { border-color: var(--so-green); }
 .tier:focus-visible { outline: 2px solid var(--so-green); outline-offset: 3px; }
-.tier[aria-pressed="true"] {
-  background: var(--so-ochre);
-  border-color: var(--so-green);
-  outline: 1px solid var(--so-green);
-  outline-offset: -6px;
-}
+.tier[aria-pressed="true"] { background: var(--so-ochre); border-color: var(--so-green); }
 .tier-qty { font-size: 14px; font-weight: 600; color: var(--so-green); white-space: nowrap; }
 .tier-price { font-family: var(--so-serif); font-size: 30px; font-weight: 500; line-height: 1.1; color: var(--so-green); }
-.tier-each { font-size: 13px; color: var(--so-muted); white-space: nowrap; }
-.tier[aria-pressed="true"] .tier-each { color: var(--so-green); }
+/* "per box" is said once, in the label above the tiles; each tile keeps it for screen readers */
+.tier-each { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
 
 .buy-row { display: flex; align-items: center; gap: 14px; margin-top: 22px; flex-wrap: wrap; }
 .buy-row .so-btn { flex: 1 1 220px; }
@@ -444,12 +440,12 @@ body[data-page="shop"] .product::after { bottom: 0; right: 0; clip-path: polygon
 body[data-page="shop"] .product .wrap { position: relative; z-index: 1; }
 body[data-page="shop"] .product-grid { grid-template-columns: minmax(0, 1.12fr) minmax(0, 1fr); gap: clamp(32px, 4vw, 64px); }
 body[data-page="shop"] .gallery { grid-template-columns: 84px 1fr; gap: 18px; }
-body[data-page="shop"] .gallery-thumb { width: 84px; border-radius: 0; }
-body[data-page="shop"] .gallery-main { border-radius: 0; }
+body[data-page="shop"] .gallery-thumb { width: 84px; border-radius: var(--so-r); }
+body[data-page="shop"] .gallery-main { border-radius: var(--so-r-lg); }
 /* the sleeve is a cut-out: no panel behind it, just the printed card and a soft shadow */
 body[data-page="shop"] .sleeve-photo { aspect-ratio: 695 / 959; border-radius: 0; overflow: visible; background: none; }
 body[data-page="shop"] .sleeve-photo img { object-fit: contain; filter: drop-shadow(0 14px 26px rgba(31, 45, 26, 0.16)); }
-body[data-page="shop"] .buy { background: var(--so-bg); padding: clamp(28px, 3.2vw, 48px); }
+body[data-page="shop"] .buy { background: var(--so-bg); padding: clamp(28px, 3.2vw, 48px); border-radius: var(--so-r-lg); }
 body[data-page="shop"] .buy .accordion { margin-top: 30px; }
 body[data-page="shop"] .buy .accordion details:last-child { border-bottom: 0; }
 
@@ -475,19 +471,19 @@ body[data-page="shop"] .buy .accordion details:last-child { border-bottom: 0; }
     display: flex;
     flex-direction: column;
     justify-content: center;
-    padding: clamp(14px, calc(5svh - 18px), 44px) clamp(28px, 3.2vw, 56px);
+    padding: clamp(18px, calc(5svh - 14px), 44px) clamp(28px, 3.2vw, 56px);
   }
   body[data-page="shop"] .buy-title { font-size: clamp(34px, min(4.1vw, calc(4.2svh + 8px)), 58px); }
-  body[data-page="shop"] .buy-price { margin-top: clamp(10px, 2svh, 26px); }
+  body[data-page="shop"] .buy-price { margin-top: clamp(12px, 2.2svh, 26px); }
   body[data-page="shop"] .buy-price-now { font-size: clamp(36px, calc(3svh + 16px), 50px); }
-  body[data-page="shop"] .buy-facts { margin-top: clamp(4px, 0.8svh, 10px); }
-  body[data-page="shop"] .tiers-label { margin: clamp(8px, calc(5svh - 24px), 34px) 0 clamp(6px, 1.1svh, 12px); }
-  body[data-page="shop"] .tier { min-height: clamp(72px, calc(9svh + 6px), 96px); padding: clamp(8px, 1.6svh, 16px) 14px clamp(7px, 1.4svh, 14px); }
+  body[data-page="shop"] .buy-facts { margin-top: clamp(6px, 1svh, 10px); }
+  body[data-page="shop"] .tiers-label { margin: clamp(14px, calc(5svh - 18px), 34px) 0 clamp(8px, 1.3svh, 12px); }
+  body[data-page="shop"] .tier { min-height: clamp(66px, calc(8svh + 12px), 84px); padding: clamp(10px, 1.8svh, 14px) 16px; }
   body[data-page="shop"] .tier-price { font-size: clamp(24px, calc(1.5svh + 15px), 30px); }
-  body[data-page="shop"] .buy-row { margin-top: clamp(10px, 2.2svh, 22px); }
+  body[data-page="shop"] .buy-row { margin-top: clamp(14px, 2.6svh, 22px); }
   body[data-page="shop"] .buy-row .so-btn--large { min-height: clamp(46px, 5.6svh, 56px); }
-  body[data-page="shop"] .buy .accordion { margin-top: clamp(8px, calc(5svh - 24px), 30px); }
-  body[data-page="shop"] .buy .accordion summary { padding: clamp(5px, calc(2.9svh - 16.5px), 16px) 0; font-size: clamp(19px, calc(1.2svh + 11px), 24px); }
+  body[data-page="shop"] .buy .accordion { margin-top: clamp(14px, calc(5svh - 18px), 30px); }
+  body[data-page="shop"] .buy .accordion summary { padding: clamp(8px, calc(2.9svh - 10px), 18px) 0; font-size: clamp(20px, calc(1.2svh + 12px), 24px); }
 }
 
 .assure { padding: 0; border-bottom: 1px solid var(--so-line); }
