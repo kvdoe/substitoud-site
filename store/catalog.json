@@ -32,8 +32,8 @@
     "countries": [
       "US"
     ],
-    "amount": 0,
-    "label": "Free US shipping",
+    "amount": 399,
+    "label": "US shipping",
     "minBusinessDays": 3,
     "maxBusinessDays": 7
   },

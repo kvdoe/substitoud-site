@@ -161,8 +161,9 @@
   function summaryNode(p) {
     var rows = '<div><dt>' + plural(p.qty, 'box', 'boxes') + ' at ' + money(p.base) + '</dt><dd>' + money(p.base * p.qty) + '</dd></div>';
     if (p.savings > 0) rows += '<div class="so-sum-save"><dt>Bundle saving</dt><dd>−' + money(p.savings) + '</dd></div>';
-    rows += '<div><dt>Shipping in the US</dt><dd>Free</dd></div>';
-    rows += '<div class="so-sum-total"><dt>Total</dt><dd>' + money(p.subtotal) + '</dd></div>';
+    var ship = (catalog && catalog.shipping && catalog.shipping.amount) || 0;
+    rows += '<div><dt>Shipping in the US</dt><dd>' + (ship ? money(ship) : 'Free') + '</dd></div>';
+    rows += '<div class="so-sum-total"><dt>Total</dt><dd>' + money(p.subtotal + ship) + '</dd></div>';
     return el('dl', { class: 'so-sum', html: rows });
   }
 
