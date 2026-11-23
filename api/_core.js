@@ -46,13 +46,14 @@ async function stripeRequest(env, fetchImpl, method, path, params) {
   return { ok: res.ok, status: res.status, data: data };
 }
 
-function checkoutParams(catalog, cart, origin, env, email) {
+function checkoutParams(catalog, cart, origin, env, email, cleanUrls) {
+  var ext = cleanUrls ? '' : '.html';   /* some hosts serve pages without the .html ending */
   var p = catalog.product, s = catalog.shipping;
   var sticks = cart.qty * p.sticksPerBox;
   var params = {
     'mode': 'payment',
-    'success_url': origin + '/order-confirmed.html?session_id={CHECKOUT_SESSION_ID}',
-    'cancel_url': origin + '/cart.html?checkout=cancelled',
+    'success_url': origin + '/order-confirmed' + ext + '?session_id={CHECKOUT_SESSION_ID}',
+    'cancel_url': origin + '/cart' + ext + '?checkout=cancelled',
     'line_items[0][quantity]': cart.qty,
     'line_items[0][price_data][currency]': catalog.currency,
     'line_items[0][price_data][unit_amount]': cart.unit,
@@ -168,7 +169,7 @@ async function handleApi(input) {
     var email = input.body && typeof input.body.email === 'string' && /^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(input.body.email)
       ? input.body.email : null;
     var r = await stripeRequest(env, input.fetchImpl, 'POST', '/checkout/sessions',
-      checkoutParams(catalog, cart, input.origin, env, email));
+      checkoutParams(catalog, cart, input.origin, env, email, input.cleanUrls));
     if (!r.ok || !r.data.url) {
       var detail = r.data && r.data.error && r.data.error.message;
       return { status: 502, body: { error: 'The payment page could not be opened. Try again in a moment.', detail: mode === 'test' ? detail : undefined } };
