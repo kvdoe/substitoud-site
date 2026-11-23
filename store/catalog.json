@@ -32,7 +32,7 @@
     "countries": [
       "US"
     ],
-    "amount": 299,
+    "amount": 399,
     "label": "US shipping",
     "minBusinessDays": 3,
     "maxBusinessDays": 7,
