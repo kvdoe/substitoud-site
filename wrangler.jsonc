@@ -2,6 +2,7 @@
   // Cloudflare: one Worker serves the site files and runs the checkout code for /api/*.
   // The name must stay the same as the Worker in the Cloudflare dashboard.
   "name": "square-salad-66a5",
+  "account_id": "f0ae7fed328d9dc2ba04246b0d9608cb",
   "main": "_worker.js",
   "compatibility_date": "2026-11-01",
   "keep_vars": true,
