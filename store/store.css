@@ -446,7 +446,9 @@ body[data-page="shop"] .product-grid { grid-template-columns: minmax(0, 1.12fr) 
 body[data-page="shop"] .gallery { grid-template-columns: 84px 1fr; gap: 18px; }
 body[data-page="shop"] .gallery-thumb { width: 84px; border-radius: 0; }
 body[data-page="shop"] .gallery-main { border-radius: 0; }
-body[data-page="shop"] .sleeve-photo { border-radius: 0; }
+/* the sleeve is a cut-out: no panel behind it, just the printed card and a soft shadow */
+body[data-page="shop"] .sleeve-photo { aspect-ratio: 695 / 959; border-radius: 0; overflow: visible; background: none; }
+body[data-page="shop"] .sleeve-photo img { object-fit: contain; filter: drop-shadow(0 14px 26px rgba(31, 45, 26, 0.16)); }
 body[data-page="shop"] .buy { background: var(--so-bg); padding: clamp(28px, 3.2vw, 48px); }
 body[data-page="shop"] .buy .accordion { margin-top: 30px; }
 body[data-page="shop"] .buy .accordion details:last-child { border-bottom: 0; }
