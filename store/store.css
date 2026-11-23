@@ -128,6 +128,7 @@ button, input, select, textarea { font: inherit; color: inherit; }
 .buy-price-unit { font-size: 16px; color: var(--so-muted); white-space: nowrap; }
 .buy-price-was { font-size: 18px; color: var(--so-muted); white-space: nowrap; }
 .buy-facts { margin: 10px 0 0; font-size: 15.5px; color: var(--so-muted); }
+.buy-facts strong { font-weight: 600; color: var(--so-green); }
 
 .tiers-label { margin: 34px 0 12px; font-size: 15px; font-weight: 600; color: var(--so-green); }
 .tiers { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 10px; }
