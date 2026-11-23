@@ -1,4 +1,5 @@
 _worker.js
-_routes.json
+wrangler.jsonc
+.assetsignore
 README.md
 dev-server.js

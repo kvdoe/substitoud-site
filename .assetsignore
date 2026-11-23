@@ -1,0 +1,15 @@
+# kept out of the public site on Cloudflare
+_worker.js
+wrangler.jsonc
+.assetsignore
+api
+vercel.json
+.vercelignore
+README.md
+dev-server.js
+.git
+.gitignore
+.wrangler
+node_modules
+package.json
+package-lock.json

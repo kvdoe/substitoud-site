@@ -190,7 +190,7 @@ async function handleApi(input) {
   return { status: 404, body: { error: 'Not found.' } };
 }
 
-/* ---------- Cloudflare Pages adapter (advanced mode) ---------- */
+/* ---------- Cloudflare adapter: a Worker with static assets, run first for /api/* (see wrangler.jsonc) ---------- */
 export default {
   async fetch(request, env) {
     var url = new URL(request.url);
@@ -205,7 +205,7 @@ export default {
       url.searchParams.forEach(function (v, k) { query[k] = v; });
       var out = await handleApi({
         method: request.method, path: url.pathname, query: query, body: body,
-        origin: url.origin, host: url.host, env: env, catalog: catalog,
+        origin: url.origin, host: url.host, env: env, catalog: catalog, cleanUrls: true,
         fetchImpl: function (u, i) { return fetch(u, i); }
       });
       return new Response(JSON.stringify(out.body), { status: out.status, headers: headers });
