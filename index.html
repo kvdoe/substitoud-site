@@ -1830,6 +1830,41 @@
       els.forEach(function (el) { io.observe(el); });
     }());
   </script>
+
+<!-- SO-POPUP: temporary home page pop-up -->
+<style>
+  .so-pop { position: fixed; inset: 0; z-index: 4000; display: flex; align-items: center; justify-content: center; padding: 24px; background: rgba(31, 45, 26, 0.78); }
+  .so-pop[hidden] { display: none; }
+  .so-pop-box { position: relative; line-height: 0; background: #FBF8EF; box-shadow: 0 24px 70px rgba(0, 0, 0, 0.45); }
+  .so-pop-box img { display: block; width: auto; height: auto; max-width: min(86vw, 520px); max-height: 84vh; max-height: 84svh; }
+  .so-pop-close { position: absolute; top: 0; right: 0; width: 44px; height: 44px; padding: 0; border: 0; background: #FBF8EF; color: #1F2D1A; cursor: pointer; display: flex; align-items: center; justify-content: center; }
+  .so-pop-close:hover { background: #E4B552; }
+  .so-pop-close:focus-visible { outline: 2px solid #E4B552; outline-offset: 2px; }
+</style>
+<div class="so-pop" id="so-pop" hidden>
+  <div class="so-pop-box" role="dialog" aria-modal="true" aria-label="Photo">
+    <img src="store/img/popup-photo.webp" alt="A close-up photo of a smiling face" width="761" height="1744" />
+    <button type="button" class="so-pop-close" aria-label="Close">
+      <svg viewBox="0 0 16 16" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" aria-hidden="true"><path d="M3 3l10 10M13 3L3 13"></path></svg>
+    </button>
+  </div>
+</div>
+<script>
+(function () {
+  var pop = document.getElementById('so-pop');
+  if (!pop) return;
+  try { if (sessionStorage.getItem('so_pop_seen')) return; sessionStorage.setItem('so_pop_seen', '1'); } catch (e) { /* storage blocked: show it anyway */ }
+  var btn = pop.querySelector('.so-pop-close'), before = document.activeElement;
+  function close() { pop.hidden = true; document.removeEventListener('keydown', onKey); if (before && before.focus) before.focus(); }
+  function onKey(e) { if (e.key === 'Escape') close(); if (e.key === 'Tab') { e.preventDefault(); btn.focus(); } }
+  pop.hidden = false;
+  btn.addEventListener('click', close);
+  pop.addEventListener('click', function (e) { if (e.target === pop) close(); });
+  document.addEventListener('keydown', onKey);
+  btn.focus();
+})();
+</script>
+<!-- /SO-POPUP -->
   <script src="store/store.js" defer></script>
 </body>
 </html>
